@@ -962,18 +962,32 @@ document.getElementById('lightbox').addEventListener('click', function() {
 });
 function abrirModal(id) {
   var m = document.getElementById('modal-' + id);
-  if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  if (m) {
+    m.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    history.pushState({ modal: id }, '');
+  }
 }
 function cerrarModal(id) {
   var m = document.getElementById('modal-' + id);
-  if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
+  if (m) {
+    m.classList.remove('open');
+    document.body.style.overflow = '';
+  }
 }
+function cerrarTodosLosModales() {
+  document.querySelectorAll('.modal-overlay.open').forEach(function(m) {
+    m.classList.remove('open');
+  });
+  document.body.style.overflow = '';
+}
+window.addEventListener('popstate', function(e) {
+  cerrarTodosLosModales();
+});
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
-    document.querySelectorAll('.modal-overlay.open').forEach(function(m) {
-      m.classList.remove('open');
-    });
-    document.body.style.overflow = '';
+    cerrarTodosLosModales();
+    history.back();
   }
 });
 </script>
