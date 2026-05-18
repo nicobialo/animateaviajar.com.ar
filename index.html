@@ -202,11 +202,11 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
 .excursiones-grid { display: flex; flex-wrap: wrap; gap: .45rem; }
 .excursion-tag { font-size: .58rem; font-weight: 700; letter-spacing: .08em; color: var(--teal2); background: rgba(0,194,154,0.1); border: 1px solid rgba(0,194,154,0.25); padding: .28rem .7rem; border-radius: 100px; }
 .ritmo-comparacion { display: flex; align-items: center; gap: 1rem; background: rgba(0,0,0,0.25); border-radius: 12px; padding: 1.2rem 1.4rem; border: 1px solid rgba(255,255,255,0.06); }
-.comp-ellos, .comp-nosotros { flex: 1; }
+.comp-ellos, .comp-nosotros { flex: 1; min-width: 0; }
 .comp-nosotros { text-align: right; }
 .comp-vs { font-size: 1.4rem; color: rgba(255,255,255,0.2); flex-shrink: 0; }
 .comp-label { font-size: .52rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: .3rem; }
-.comp-valor { font-size: 1.8rem; font-weight: 900; line-height: 1; margin-bottom: .3rem; }
+.comp-valor { font-size: clamp(1.2rem, 5vw, 1.8rem); font-weight: 900; line-height: 1; margin-bottom: .3rem; }
 .comp-valor--gris { color: rgba(255,255,255,0.25); text-decoration: line-through; }
 .comp-valor--teal { color: var(--teal2); }
 .comp-detalle { font-size: .56rem; color: rgba(255,255,255,0.4); line-height: 1.6; }
