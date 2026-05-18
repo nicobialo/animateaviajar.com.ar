@@ -960,6 +960,13 @@ document.getElementById('lightbox').addEventListener('click', function() {
   this.style.display = 'none';
   document.body.style.overflow = '';
 });
+function cerrarTodosLosModales() {
+  document.querySelectorAll('.modal-overlay.open').forEach(function(m) {
+    m.classList.remove('open');
+  });
+  document.body.style.overflow = '';
+}
+
 function abrirModal(id) {
   var m = document.getElementById('modal-' + id);
   if (m) {
@@ -968,26 +975,24 @@ function abrirModal(id) {
     history.pushState({ modal: id }, '');
   }
 }
+
 function cerrarModal(id) {
   var m = document.getElementById('modal-' + id);
-  if (m) {
+  if (m && m.classList.contains('open')) {
     m.classList.remove('open');
     document.body.style.overflow = '';
+    history.back();
   }
 }
-function cerrarTodosLosModales() {
-  document.querySelectorAll('.modal-overlay.open').forEach(function(m) {
-    m.classList.remove('open');
-  });
-  document.body.style.overflow = '';
-}
+
 window.addEventListener('popstate', function(e) {
   cerrarTodosLosModales();
 });
+
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
-    cerrarTodosLosModales();
-    history.back();
+    var abierto = document.querySelector('.modal-overlay.open');
+    if (abierto) { history.back(); }
   }
 });
 </script>
