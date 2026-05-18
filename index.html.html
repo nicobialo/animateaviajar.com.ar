@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animate a Viajar · Agencia de Viajes</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --dark: #0A1F18; --dark2: #0F2A20; --dark3: #142E24;
+  --teal: #1D9E75; --teal2: #00C29A; --teal3: #00E5B5;
+  --orange: #E8600A; --orange2: #FF9A00;
+  --white: #ffffff; --muted: rgba(255,255,255,0.5);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Montserrat', sans-serif; background: var(--dark); color: var(--white); overflow-x: hidden; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.2rem; background: rgba(10,31,24,0.97); border-bottom: 1px solid rgba(0,194,154,0.1); backdrop-filter: blur(8px); }
+.nav-logo { display: flex; align-items: center; gap: .6rem; }
+.nav-logo-text { font-size: .85rem; font-weight: 900; letter-spacing: .15em; color: var(--white); }
+.nav-logo-sub { font-size: .45rem; font-weight: 600; letter-spacing: .25em; color: var(--teal2); }
+nav ul { display: none; }
+.nav-cta { font-size: .58rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; background: var(--teal); color: var(--white); padding: .55rem 1.1rem; border: none; cursor: pointer; text-decoration: none; display: inline-block; white-space: nowrap; }
+
+/* HERO */
+.hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding: 7rem 1.4rem 4rem; }
+.hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0A1F18 0%, #0F2A20 50%, #0A1F18 100%); }
+.hero-inner { position: relative; width: 100%; }
+.hero-content { max-width: 100%; }
+.hero-eyebrow { display: flex; align-items: center; gap: .6rem; font-size: .55rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--teal2); margin-bottom: 1.2rem; }
+.hero h1 { font-size: clamp(2.6rem, 11vw, 4.5rem); font-weight: 900; line-height: 1.02; letter-spacing: -.02em; margin-bottom: 1rem; }
+.hero h1 em { font-style: normal; color: var(--orange2); }
+.hero-frase { font-size: .72rem; font-weight: 900; letter-spacing: .1em; color: var(--teal3); margin-bottom: 2rem; text-transform: uppercase; }
+.hero-btns { display: flex; gap: .7rem; flex-wrap: wrap; }
+.btn-primary { display: inline-block; background: var(--teal); color: var(--white); font-size: .62rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: .9rem 1.8rem; text-decoration: none; }
+.btn-ghost { display: inline-block; border: 1px solid rgba(0,194,154,0.4); color: var(--teal2); font-size: .62rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: .9rem 1.8rem; text-decoration: none; }
+
+/* STATS */
+.stats { background: var(--dark2); border-top: 1px solid rgba(0,194,154,0.12); border-bottom: 1px solid rgba(0,194,154,0.12); padding: 1.6rem 1rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+.stat { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.stat-n { font-size: 1.8rem; font-weight: 900; color: var(--teal2); line-height: 1; height: 2.2rem; display: flex; align-items: center; justify-content: center; }
+.stat-l { font-size: .5rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-top: .3rem; }
+
+/* SECTIONS */
+section { padding: 3.5rem 1.4rem; }
+.s-eyebrow { font-size: .52rem; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; color: var(--teal2); margin-bottom: .7rem; }
+.s-title { font-size: clamp(1.5rem, 7vw, 2.6rem); font-weight: 900; line-height: 1.15; }
+.s-title span { color: var(--teal2); }
+.s-title em { font-style: normal; color: var(--orange2); }
+.teal-line { width: 36px; height: 2px; background: var(--teal2); margin: 1rem 0; }
+
+/* HISTORIA */
+.historia { background: var(--dark3); }
+.historia-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.historia-visual { position: relative; }
+.historia-img { width: 100%; height: 320px; object-fit: cover; object-position: top; display: block; }
+.historia-badge { position: absolute; bottom: -1rem; right: -0rem; background: var(--dark); border: 1px solid rgba(0,194,154,0.3); padding: .8rem 1.1rem; text-align: center; }
+.historia-badge-n { font-size: 1.8rem; font-weight: 900; color: var(--teal2); }
+.historia-badge-l { font-size: .44rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.historia-text { margin-top: 1.5rem; }
+.historia-text p { font-size: .82rem; line-height: 1.9; color: rgba(255,255,255,0.72); margin-bottom: 1rem; }
+.historia-text strong { color: var(--teal2); }
+
+/* TESTIMONIOS */
+.testimonios { background: var(--dark2); }
+.testi-header { text-align: center; margin-bottom: 2rem; }
+.testi-header .teal-line { margin: 1rem auto; }
+.testi-nota { font-size:.64rem; color:var(--muted); font-style:italic; max-width:500px; margin:.7rem auto 0; line-height:1.7; }
+.testi-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: .8rem; }
+.t-card { background: var(--dark3); border: 1px solid rgba(0,194,154,0.12); }
+.t-card.featured { display: grid; grid-template-columns: 1fr; }
+.t-card.featured .t-screenshot { height: 220px; }
+.t-screenshot { width: 100%; height: 200px; overflow: hidden; position: relative; background: var(--dark); display: flex; align-items: center; justify-content: center; }
+.t-screenshot img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+.t-ph { text-align:center; color:rgba(0,194,154,0.35); }
+.t-ph-icon { font-size:1.8rem; }
+.t-ph-label { font-size:.48rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin-top:.4rem; color:rgba(0,194,154,0.5); }
+.screen-badge { position: absolute; top: .6rem; left: .6rem; background: rgba(0,194,154,0.15); border: 1px solid rgba(0,194,154,0.35); padding: .2rem .55rem; font-size: .46rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal2); }
+.t-body { padding: 1rem 1.1rem 1.1rem; }
+.t-stars { color: var(--orange2); font-size: .68rem; margin-bottom: .5rem; }
+.t-text { font-size: .82rem; font-style: italic; line-height: 1.7; color: rgba(255,255,255,.85); margin-bottom: .7rem; }
+.t-author { font-size: .58rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal2); }
+.t-dest { font-size: .54rem; color: var(--muted); margin-top: .1rem; }
+.t-tag { display:inline-block; margin-top:.5rem; font-size:.46rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; background:rgba(0,194,154,0.1); border:1px solid rgba(0,194,154,0.25); color:var(--teal2); padding:.18rem .55rem; }
+
+/* SERVICIOS */
+.servicios { background: var(--dark3); }
+.servicios-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.serv-list { display: flex; flex-direction: column; }
+.serv-item { padding: 1.2rem 0; border-bottom: 1px solid rgba(0,194,154,0.1); display: flex; gap: .9rem; align-items: flex-start; }
+.serv-item:first-child { border-top: 1px solid rgba(0,194,154,0.1); }
+.serv-num { font-size: .95rem; font-weight: 900; color: rgba(0,194,154,0.2); min-width: 1.4rem; padding-top:.1rem; }
+.serv-name { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--white); margin-bottom: .2rem; }
+.serv-desc { font-size: .76rem; line-height: 1.7; color: var(--muted); }
+.serv-img { width: 100%; height: 220px; object-fit: cover; display: block; order: -1; }
+
+/* CTA */
+.cta-section { position: relative; padding: 5rem 1.4rem; text-align: center; background: var(--dark2); }
+.cta-inner { position: relative; max-width: 560px; margin: 0 auto; }
+.cta-inner p { font-size: .74rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); line-height: 2; margin: 1.4rem 0 2rem; }
+.wa-btn { display: inline-flex; align-items: center; gap: .6rem; background: #25D366; color: white; font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; padding: 1rem 2rem; text-decoration: none; border-radius: 2px; }
+
+/* FOOTER */
+footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); padding: 2rem 1.4rem; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; text-align: center; }
+.f-logo { font-size: .88rem; font-weight: 900; letter-spacing: .14em; color: var(--white); }
+.f-logo span { color: var(--teal2); }
+.f-links { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+.f-links a { font-size: .54rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+.f-copy { font-size: .52rem; color: var(--muted); }
+
+/* LIGHTBOX */
+#lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.92); z-index:9999; align-items:center; justify-content:center; padding:1rem; cursor:zoom-out; }
+#lb-img { max-width:100%; max-height:90vh; object-fit:contain; border-radius:4px; }
+
+/* TABLET Y DESKTOP */
+@media(min-width:600px){
+  nav ul { display: flex; gap: 1.2rem; }
+  nav ul li a { font-size: .56rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .3s; }
+  nav ul li a:hover { color: var(--teal2); }
+  .testi-grid { grid-template-columns: repeat(2, 1fr); }
+  .t-card.featured { grid-column: span 2; grid-template-columns: 1fr 1fr; }
+  .t-card.featured .t-screenshot { height: 100%; min-height: 200px; }
+}
+@media(min-width:900px){
+  section { padding: 5rem 2rem; }
+  .historia-inner { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .historia-text { margin-top: 0; }
+  .historia-img { height: 420px; }
+  .testi-grid { grid-template-columns: repeat(4, 1fr); }
+  .servicios-inner { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .serv-img { height: 400px; order: 0; }
+  footer { flex-direction: row; justify-content: space-between; text-align: left; }
+}
+
+
+/* PAQUETES */
+.paquetes { background: var(--dark); padding: 4rem 1.4rem; }
+.paquetes-inner { max-width: 1000px; margin: 0 auto; }
+.paquetes-header { text-align: center; margin-bottom: 2.5rem; }
+.paquetes-sub { font-size: .72rem; color: var(--muted); max-width: 480px; margin: .8rem auto 0; line-height: 1.8; font-weight: 500; }
+
+/* Hoteles */
+.hoteles-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem; }
+@media(min-width:700px){ .hoteles-grid { grid-template-columns: repeat(3,1fr); } }
+
+.hotel-card {
+  background: var(--dark3);
+  border: 1px solid rgba(0,194,154,0.2);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color .3s, transform .3s;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.hotel-card:hover { border-color: rgba(0,194,154,0.5); transform: translateY(-3px); }
+
+.hotel-card:hover { border-color: rgba(0,194,154,0.35); transform: translateY(-3px); }
+
+
+
+
+.hotel-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0,194,154,0.2);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+  transition: transform .3s, border-color .3s;
+  display: flex;
+  flex-direction: column;
+  background: #0d2535;
+}
+.hotel-card:hover { transform: translateY(-4px); border-color: rgba(0,194,154,0.45); }
+.hotel-card--featured { border-color: rgba(0,194,154,0.35); }
+.hotel-photo {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  flex-shrink: 0;
+}
+.hotel-body {
+  padding: 1.1rem 1.2rem 1.3rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hotel-card--featured {
+  border-color: rgba(0,194,154,0.4);
+  background: var(--dark3);
+}
+
+.hotel-nights {
+  font-size: .5rem; font-weight: 900; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--teal2); background: rgba(0,194,154,0.12); border: 1px solid rgba(0,194,154,0.25);
+  display: inline-block; padding: .2rem .6rem; border-radius: 4px; margin-bottom: .7rem;
+}
+.hotel-dest { font-size: .56rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
+.hotel-name { font-size: .88rem; font-weight: 900; color: var(--white); margin-bottom: .3rem; line-height: 1.3; }
+.hotel-stars { color: var(--orange2); font-size: .75rem; margin-bottom: .7rem; }
+.hotel-desc { font-size: .72rem; line-height: 1.7; color: rgba(255,255,255,0.55); margin-bottom: 1rem; }
+.hotel-tag {
+  font-size: .5rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--teal2); background: rgba(0,194,154,0.1); border: 1px solid rgba(0,194,154,0.25);
+  display: inline-block; padding: .22rem .65rem; border-radius: 4px;
+}
+.hotel-tag--neutral { color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+
+/* Incluye */
+.paquete-incluye {
+  display: grid; grid-template-columns: repeat(2,1fr);
+  gap: .6rem; margin-bottom: 2rem;
+}
+@media(min-width:600px){ .paquete-incluye { grid-template-columns: repeat(3,1fr); } }
+
+.incluye-item-pkg {
+  display: flex; align-items: center; gap: .6rem;
+  background: var(--dark3); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px; padding: .7rem .9rem;
+  font-size: .66rem; font-weight: 600; color: rgba(255,255,255,0.65);
+}
+.incluye-item-pkg span { line-height: 1.4; }
+
+/* Fechas */
+.fechas-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media(min-width:600px){ .fechas-grid { grid-template-columns: 1fr 1fr; } }
+
+.fecha-card {
+  border-radius: 14px; padding: 1.6rem 1.4rem; text-align: center; border: 1px solid;
+}
+.fecha-card--agosto { background: linear-gradient(135deg, rgba(245,166,35,0.08), rgba(200,100,0,0.05)); border-color: rgba(245,166,35,0.3); }
+.fecha-card--noviembre { background: linear-gradient(135deg, rgba(192,132,252,0.08), rgba(124,58,237,0.05)); border-color: rgba(192,132,252,0.3); }
+
+.fecha-label { font-size: .56rem; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-bottom: .5rem; }
+.fecha-dates { font-size: .9rem; font-weight: 900; color: var(--white); margin-bottom: .3rem; }
+.fecha-duracion { font-size: .58rem; color: var(--muted); margin-bottom: 1rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.fecha-precio-desde { font-size: .52rem; color: var(--muted); text-transform: uppercase; letter-spacing: .15em; font-weight: 700; }
+.fecha-precio { font-size: 2rem; font-weight: 900; color: var(--white); line-height: 1.1; }
+.fecha-card--agosto .fecha-precio { color: #f5a623; }
+.fecha-card--noviembre .fecha-precio { color: #c084fc; }
+.fecha-base { font-size: .52rem; color: var(--muted); margin-bottom: 1.2rem; }
+.fecha-cta {
+  display: inline-block; font-size: .6rem; font-weight: 700; letter-spacing: .15em;
+  text-transform: uppercase; text-decoration: none; padding: .7rem 1.5rem; border-radius: 6px; transition: all .3s;
+}
+.fecha-card--agosto .fecha-cta { background: rgba(245,166,35,0.15); color: #f5a623; border: 1px solid rgba(245,166,35,0.4); }
+.fecha-card--agosto .fecha-cta:hover { background: rgba(245,166,35,0.3); }
+.fecha-card--noviembre .fecha-cta { background: rgba(192,132,252,0.15); color: #c084fc; border: 1px solid rgba(192,132,252,0.4); }
+.fecha-card--noviembre .fecha-cta:hover { background: rgba(192,132,252,0.3); }
+
+
+/* RITMO BLOCK */
+.ritmo-block {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(0,194,154,0.12);
+  border-radius: 16px;
+  padding: 2rem 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.ritmo-frase {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--white);
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+.ritmo-comillas {
+  color: var(--teal2);
+  font-size: 1.8rem;
+  line-height: 0;
+  vertical-align: -0.4rem;
+  font-style: normal;
+}
+
+.ritmo-cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.4rem;
+  margin-bottom: 2rem;
+}
+@media(min-width:600px){ .ritmo-cols { grid-template-columns: 1fr 1fr; } }
+
+.ritmo-col-title {
+  font-size: .78rem;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: .6rem;
+  letter-spacing: .03em;
+}
+.ritmo-col-text {
+  font-size: .72rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.excursiones-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+}
+.excursion-tag {
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--teal2);
+  background: rgba(0,194,154,0.1);
+  border: 1px solid rgba(0,194,154,0.25);
+  padding: .28rem .7rem;
+  border-radius: 100px;
+}
+
+/* Comparación */
+.ritmo-comparacion {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(0,0,0,0.25);
+  border-radius: 12px;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.comp-ellos, .comp-nosotros { flex: 1; }
+.comp-nosotros { text-align: right; }
+.comp-vs {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: rgba(255,255,255,0.2);
+  flex-shrink: 0;
+}
+.comp-label {
+  font-size: .52rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: .3rem;
+}
+.comp-valor {
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: .3rem;
+}
+.comp-valor--gris { color: rgba(255,255,255,0.25); text-decoration: line-through; }
+.comp-valor--teal { color: var(--teal2); }
+.comp-detalle {
+  font-size: .56rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.6;
+}
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<div id="lightbox" onclick="this.style.display='none';document.body.style.overflow=''">
+  <img id="lb-img"/>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <svg width="160" height="44" viewBox="0 0 160 44" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="20" font-family="Montserrat,sans-serif" font-size="20" font-weight="900" fill="white" letter-spacing="1">ANIMATE</text>
+      <text x="0" y="40" font-family="Montserrat,sans-serif" font-size="20" font-weight="900" fill="white" letter-spacing="1">A VIAJAR</text>
+    </svg>
+  </div>
+  <ul>
+    <li><a href="#historia">Mi historia</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#paquetes">Paquetes</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Escribime</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Agencia de Viajes · Argentina</div>
+      <h1>El mundo<br>te está<br><em>esperando</em></h1>
+      <p class="hero-frase">VIAJÁ CON QUIEN YA LO VIVIÓ</p>
+      <div class="hero-btns">
+        <a href="#testimonios" class="btn-primary">Ver experiencias</a>
+        <a href="#contacto" class="btn-ghost">Escribime</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-n">+220</div><div class="stat-l">Viajeros felices</div></div>
+  <div class="stat"><div class="stat-n"><svg width="48" height="32" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="9" r="5" fill="#00C29A" opacity="0.7"/>
+  <path d="M2 30c0-5.5 3.6-9 8-9s8 3.5 8 9" stroke="#00C29A" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <circle cx="38" cy="9" r="5" fill="#00C29A" opacity="0.7"/>
+  <path d="M30 30c0-5.5 3.6-9 8-9s8 3.5 8 9" stroke="#00C29A" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <circle cx="24" cy="7" r="6.5" fill="#00E5B5"/>
+  <path d="M13 30c0-6.5 4.9-11 11-11s11 4.5 11 11" stroke="#00E5B5" stroke-width="2.5" stroke-linecap="round"/>
+</svg></div><div class="stat-l">Grupales acompañados</div></div>
+  <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Atención personalizada</div></div>
+</div>
+
+<section class="historia" id="historia">
+  <div class="historia-inner">
+    <div class="historia-visual">
+      <img class="historia-img" src="" alt="Foto personal" data-placeholder="historia-foto"/>
+      <div class="historia-badge">
+        <div class="historia-badge-n">8</div>
+        <div class="historia-badge-l">Años en México</div>
+      </div>
+    </div>
+    <div class="historia-text">
+      <div class="s-eyebrow">Mi historia</div>
+      <h2 class="s-title">Primero me animé yo,<br>ahora te toca <em>a vos.</em></h2>
+      <div class="teal-line"></div>
+      <p>En 2017 llegué a un punto de no retorno. Entonces tomé la decisión: <strong>me fui al Caribe mexicano con mil dólares en el bolsillo.</strong></p>
+      <p>En 2020 me instalé en <strong>Melaque</strong> donde fundé <strong>"El Toque Argentino"</strong>: la primera panadería de estilo argentino de la Costa Alegre de Jalisco.</p>
+      <p>En 2024 volví a Argentina y creé <strong>Animate a Viajar</strong>: una agencia para darle el empujoncito a quienes todavía no se habían animado.</p>
+      <p>Lo que más me gratifica es esperar el momento en que volvés y me decís: <strong>"Tenías razón. Gracias. Fue el viaje de mi vida."</strong></p>
+    </div>
+  </div>
+
+  <!-- GALERÍA PERSONAL - 5 FOTOS SELECCIONADAS -->
+  <div style="max-width:1000px;margin:2.5rem auto 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem">
+
+    <!-- Fila 1: Set TV (grande) + Clarín -->
+    <div style="position:relative;overflow:hidden;grid-column:1/3;background:#142E24;height:240px;display:flex;align-items:center;justify-content:center;cursor:zoom-in">
+      <div style="text-align:center;color:rgba(0,194,154,0.5)"><div style="font-size:2rem">🖼️</div><div style="font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-top:.5rem">IMAGEN_PLACEHOLDER_SET_TV</div><div style="font-size:.52rem;color:rgba(255,255,255,.4);margin-top:.2rem">Set de grabación · Ciudad de México · 2018</div></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(10,31,24,.9),transparent);padding:.6rem .8rem">
+        <div style="font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#00C29A">Set de grabación · Ciudad de México</div>
+        <div style="font-size:.54rem;color:rgba(255,255,255,.45);margin-top:.1rem">Mundo del espectáculo · 2018</div>
+      </div>
+    </div>
+
+    <!-- Clarín -->
+    <div style="position:relative;overflow:hidden;background:#142E24;height:240px;display:flex;align-items:center;justify-content:center;cursor:zoom-in">
+      <div style="text-align:center;color:rgba(0,194,154,0.5)"><div style="font-size:2rem">📰</div><div style="font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-top:.5rem">IMAGEN_PLACEHOLDER_CLARIN</div><div style="font-size:.52rem;color:rgba(255,255,255,.4);margin-top:.2rem">Nota en Clarín · El Toque Argentino</div></div>
+      <div style="position:absolute;top:.6rem;left:.6rem;background:rgba(0,194,154,0.15);border:1px solid rgba(0,194,154,0.35);padding:.2rem .55rem;font-size:.46rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#00C29A">📰 Como se vio en Clarín</div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(10,31,24,.9),transparent);padding:.6rem .8rem">
+        <div style="font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#00C29A">El Toque Argentino · Melaque</div>
+        <div style="font-size:.54rem;color:rgba(255,255,255,.45);margin-top:.1rem">Panadería en el Pacífico mexicano · 2020</div>
+      </div>
+    </div>
+
+    <!-- Fila 2: Playa Melaque ancho completo -->
+    <div style="position:relative;overflow:hidden;background:#142E24;height:200px;display:flex;align-items:center;justify-content:center;cursor:zoom-in;grid-column:1/-1">
+      <div style="text-align:center;color:rgba(0,194,154,0.5)"><div style="font-size:1.5rem">🖼️</div><div style="font-size:.55rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-top:.4rem">IMAGEN_PLACEHOLDER_MELAQUE</div></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(10,31,24,.9),transparent);padding:.6rem .8rem">
+        <div style="font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#00C29A">Playa Melaque · Jalisco</div>
+        <div style="font-size:.54rem;color:rgba(255,255,255,.45);margin-top:.1rem">Con mi familia · Pacífico mexicano · 2021</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIOS - NUEVO GRID 8 MEJORES -->
+<section class="testimonios" id="testimonios">
+  <div class="testi-header">
+    <div class="s-eyebrow">Testimonios reales</div>
+    <h2 class="s-title">Lo que dicen quienes<br>ya se <em>animaron</em></h2>
+    <div class="teal-line"></div>
+    <p class="testi-nota">Capturas reales de nuestros grupos de WhatsApp. Los apellidos fueron difuminados para proteger la privacidad de nuestros viajeros.</p>
+  </div>
+
+  <div class="testi-grid">
+
+    <!-- CARD GRANDE: Vane - miedo a viajar sola -->
+    <div class="t-card featured" onclick="abrirLightbox('IMAGEN_PLACEHOLDER_26')">
+      <div class="t-screenshot">
+        <div class="t-ph"><div class="t-ph-icon">🖼️</div><div class="t-ph-label">IMAGEN_PLACEHOLDER_26</div></div>
+        <div class="screen-badge">💬 Captura real</div>
+      </div>
+      <div class="t-body">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-text">"Venía con miedito pensando que iba a remar sola, y ustedes lo hicieron super fácil. Fueron la mejor compañía para ambos."</div>
+        <div class="t-author">Vane</div>
+        <div class="t-dest">Exp Maya · Abril 2026</div>
+        <div class="t-tag">✈️ Viajó sola</div>
+      </div>
+    </div>
+
+    <!-- Sandra - sueño cumplido -->
+    <div class="t-card" onclick="abrirLightbox('IMAGEN_PLACEHOLDER_28')">
+      <div class="t-screenshot">
+        <div class="t-ph"><div class="t-ph-icon">🖼️</div><div class="t-ph-label">IMAGEN_PLACEHOLDER_28</div></div>
+        <div class="screen-badge">💬 Captura real</div>
+      </div>
+      <div class="t-body">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-text">"Me voy FELIZ con mi sueño cumplido. Gracias Nico, Tomás y Gabriel. Maravilloso viaje."</div>
+        <div class="t-author">Sandra</div>
+        <div class="t-dest">Exp Maya · Abril 2026</div>
+        <div class="t-tag">🌟 Sueño cumplido</div>
+      </div>
+    </div>
+
+    <!-- Maria - primera vez sola -->
+    <div class="t-card" onclick="abrirLightbox('IMAGEN_PLACEHOLDER_14')">
+      <div class="t-screenshot">
+        <div class="t-ph"><div class="t-ph-icon">🖼️</div><div class="t-ph-label">IMAGEN_PLACEHOLDER_14</div></div>
+        <div class="screen-badge">💬 Captura real</div>
+      </div>
+      <div class="t-body">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-text">"Mi primer viaje sola, pero de acá me llevo muchas lindas amistades. Sin conocernos formamos un grupo increíble."</div>
+        <div class="t-author">Maria</div>
+        <div class="t-dest">Exp Maya · Marzo 2026</div>
+        <div class="t-tag">✈️ Primera vez sola</div>
+      </div>
+    </div>
+
+    <!-- Noelia & Sandra - luna de miel -->
+    <div class="t-card" onclick="abrirLightbox('IMAGEN_PLACEHOLDER_36')">
+      <div class="t-screenshot">
+        <div class="t-ph"><div class="t-ph-icon">🖼️</div><div class="t-ph-label">IMAGEN_PLACEHOLDER_36</div></div>
+        <div class="screen-badge">💬 Captura real</div>
+      </div>
+      <div class="t-body">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-text">"Nico gracias por cumplir nuestro sueño. Sin palabras de agradecimiento. Una luna de miel soñada."</div>
+        <div class="t-author">Noelia & Sandra</div>
+        <div class="t-dest">Exp Maya 4 · Mayo 2025</div>
+        <div class="t-tag">💍 Luna de miel</div>
+      </div>
+    </div>
+
+    <!-- Carlos & Mirian - servicio personalizado -->
+    <div class="t-card" onclick="abrirLightbox('IMAGEN_PLACEHOLDER_15')">
+      <div class="t-screenshot">
+        <div class="t-ph"><div class="t-ph-icon">🖼️</div><div class="t-ph-label">IMAGEN_PLACEHOLDER_15</div></div>
+        <div class="screen-badge">💬 Captura real</div>
+      </div>
+      <div class="t-body">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-text">"Gracias Nico por tenernos tanta paciencia y ayudarnos en todo, siempre presente. El viaje fue maravilloso."</div>
+        <div class="t-author">Carlos & Mirian</div>
+        <div class="t-dest">Exp Maya · Marzo 2026</div>
+        <div class="t-tag">🤝 Atención personalizada</div>
+      </div>
+    </div>
+
+    <!-- Héctor & Marisa - calidad humana -->
+    <div class="t-card" onclick="abrirLightbox('IMAGEN_PLACEHOLDER_31')">
+      <div class="t-screenshot">
+        <div class="t-ph"><div class="t-ph-icon">🖼️</div><div class="t-ph-label">IMAGEN_PLACEHOLDER_31</div></div>
+        <div class="screen-badge">💬 Captura real</div>
+      </div>
+      <div class="t-body">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-text">"Gracias Nicolás por todo y sobre todo por la calidad de persona que sos. Días hermosos y maravillosos."</div>
+        <div class="t-author">Héctor & Marisa</div>
+        <div class="t-dest">Exp Maya 2 · Abril 2025</div>
+        <div class="t-tag">❤️ Calidad humana</div>
+      </div>
+    </div>
+
+    <!-- CARD GRANDE: Blanca - viajó sola e integrada -->
+    <div class="t-card featured" onclick="abrirLightbox('IMAGEN_PLACEHOLDER_48')">
+      <div class="t-screenshot">
+        <div class="t-ph"><div class="t-ph-icon">🖼️</div><div class="t-ph-label">IMAGEN_PLACEHOLDER_48</div></div>
+        <div class="screen-badge">💬 Captura real</div>
+      </div>
+      <div class="t-body">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-text">"Hermosa experiencia y hermoso grupo. No es fácil viajar sola, pero me incorporaron como una más de este contingente."</div>
+        <div class="t-author">Blanca</div>
+        <div class="t-dest">Exp Maya 5 · Junio 2025</div>
+        <div class="t-tag">✈️ Integrada al grupo</div>
+      </div>
+    </div>
+
+    <!-- Natalia - energía grupal -->
+    <div class="t-card" onclick="abrirLightbox('IMAGEN_PLACEHOLDER_39')">
+      <div class="t-screenshot">
+        <div class="t-ph"><div class="t-ph-icon">🖼️</div><div class="t-ph-label">IMAGEN_PLACEHOLDER_39</div></div>
+        <div class="screen-badge">💬 Captura real</div>
+      </div>
+      <div class="t-body">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-text">"Me voy felizzzz. Cada uno fue imprescindible en esta aventura. Una gran aventura compartida."</div>
+        <div class="t-author">Natalia & grupo</div>
+        <div class="t-dest">Exp Maya 4 · Mayo 2025</div>
+        <div class="t-tag">🎉 Experiencia grupal</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="servicios" id="servicios">
+  <div class="servicios-inner">
+    <div>
+      <div class="s-eyebrow">Lo que hacemos</div>
+      <h2 class="s-title">Viajes hechos<br>a tu <span>medida</span></h2>
+      <div class="teal-line"></div>
+      <div class="serv-list">
+        <div class="serv-item"><div class="serv-num">01</div><div><div class="serv-name">Paquetes Todo Incluido</div><div class="serv-desc">Vuelos, hotel, traslados y excursiones. Vos solo pensá en disfrutar.</div></div></div>
+        <div class="serv-item"><div class="serv-num">02</div><div><div class="serv-name">Luna de Miel</div><div class="serv-desc">El viaje romántico perfecto para comenzar esta nueva etapa juntos.</div></div></div>
+        <div class="serv-item"><div class="serv-num">03</div><div><div class="serv-name">Cruceros</div><div class="serv-desc">Caribe, Mediterráneo y Europa con las principales navieras.</div></div></div>
+        <div class="serv-item"><div class="serv-num">04</div><div><div class="serv-name">Experiencias Grupales</div><div class="serv-desc">Viajá solo/a y conocé gente nueva. México, Colombia, Europa, Egipto y Asia.</div></div></div>
+      </div>
+    </div>
+    <div>
+      <img class="serv-img" src="" alt="Grupo en el Caribe" data-placeholder="serv-img"/>
+    </div>
+  </div>
+</section>
+
+<!-- PAQUETES -->
+<section class="paquetes" id="paquetes">
+  <div class="paquetes-inner">
+    <div class="paquetes-header">
+      <div class="s-eyebrow">Paquete estrella</div>
+      <h2 class="s-title">Experiencia <em>Maya</em> Deluxe</h2>
+      <div class="teal-line" style="margin:1rem auto"></div>
+      <p class="paquetes-sub">La experiencia grupal más elegida. Tres destinos, tres hoteles 4 estrellas, todo organizado.</p>
+    </div>
+
+    <!-- Hoteles -->
+    <div class="hoteles-grid">
+
+      <div class="hotel-card">
+        <img class="hotel-photo" src="" alt="Antera Hotel" data-placeholder="hotel-antera"/>
+        <div class="hotel-body">
+          <div class="hotel-nights">6 noches</div>
+          <div class="hotel-dest">Playa del Carmen</div>
+          <div class="hotel-name">Antera Hotel &amp; Residences</div>
+          <div class="hotel-stars">★★★★</div>
+          <div class="hotel-desc">Boutique residencial a pasos de la Quinta Avenida y la playa. Habitaciones y apartamentos de diseño en el corazón de Playa.</div>
+          <div class="hotel-tag">Con desayuno</div>
+        </div>
+      </div>
+
+      <div class="hotel-card hotel-card--featured">
+        <img class="hotel-photo" src="" alt="Ixchel Beach Hotel" data-placeholder="hotel-ixchel"/>
+        <div class="hotel-body">
+          <div class="hotel-nights">2 noches</div>
+          <div class="hotel-dest">Isla Mujeres</div>
+          <div class="hotel-name">Ixchel Beach Hotel</div>
+          <div class="hotel-stars">★★★★</div>
+          <div class="hotel-desc">Frente a Playa Norte, una de las playas más exclusivas del Caribe mexicano. Estilo contemporáneo en primera línea de mar.</div>
+          <div class="hotel-tag hotel-tag--neutral">Solo alojamiento</div>
+        </div>
+      </div>
+
+      <div class="hotel-card">
+        <img class="hotel-photo" src="" alt="Occidental Costa Cancún" data-placeholder="hotel-occidental"/>
+        <div class="hotel-body">
+          <div class="hotel-nights">3 noches</div>
+          <div class="hotel-dest">Cancún</div>
+          <div class="hotel-name">Occidental Costa Cancún</div>
+          <div class="hotel-stars">★★★★</div>
+          <div class="hotel-desc">Resort todo incluido en la Zona Hotelera, frente a la Bahía de Mujeres. El cierre perfecto para una experiencia completa.</div>
+          <div class="hotel-tag">All inclusive</div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- Bloque ritmo -->
+    <div class="ritmo-block">
+
+      <div class="ritmo-frase">
+        <span class="ritmo-comillas">"</span>
+        Viajar a las apuradas no es viajar,<br>es hacer un trámite.
+        <span class="ritmo-comillas">"</span>
+      </div>
+
+      <div class="ritmo-cols">
+
+        <div class="ritmo-col">
+          <div class="ritmo-col-title">🗓️ Once noches. Tres destinos.</div>
+          <p class="ritmo-col-text">
+            Una estructura diseñada para vivir el viaje a <em>tu</em> ritmo.
+          </p>
+        </div>
+
+        <div class="ritmo-col">
+          <div class="ritmo-col-title">🗺️ El Caribe es tuyo para descubrir</div>
+          <p class="ritmo-col-text">
+            El itinerario tiene espacio para que explores según tus preferencias: arqueología, playas, parques temáticos, lagunas. Vos elegís.
+          </p>
+          <div class="excursiones-grid">
+            <span class="excursion-tag">🌊 Cenotes</span>
+            <span class="excursion-tag">🏛️ Tulum</span>
+            <span class="excursion-tag">🐠 Cozumel</span>
+            <span class="excursion-tag">🌴 Holbox</span>
+            <span class="excursion-tag">🗿 Cobá</span>
+            <span class="excursion-tag">🍹 Beach clubs</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="ritmo-comparacion">
+        <div class="comp-ellos">
+          <div class="comp-label">Lo que ofrecen otros</div>
+          <div class="comp-valor comp-valor--gris">7 días</div>
+          <div class="comp-detalle">Hoteles estándar · Excursiones a las corridas</div>
+        </div>
+        <div class="comp-vs">VS</div>
+        <div class="comp-nosotros">
+          <div class="comp-label">Experiencia Maya Deluxe</div>
+          <div class="comp-valor comp-valor--teal">11 noches</div>
+          <div class="comp-detalle">3 hoteles de categoría · Tu ritmo</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Incluye -->
+    <div class="paquete-incluye">
+      <div class="incluye-item-pkg">✈️ <span>Aéreos desde tu ciudad</span></div>
+      <div class="incluye-item-pkg">🚕 <span>Traslados completos</span></div>
+      <div class="incluye-item-pkg">👤 <span>Coordinador en destino</span></div>
+      <div class="incluye-item-pkg">⛴️ <span>Ferry a Isla Mujeres</span></div>
+      <div class="incluye-item-pkg">🗿 <span>Excursión Chichén Itzá Deluxe</span></div>
+      <div class="incluye-item-pkg">👥 <span>Cupo máximo 12 personas</span></div>
+    </div>
+
+    <!-- Fechas y precios -->
+    <div class="fechas-grid">
+
+      <div class="fecha-card fecha-card--agosto">
+        <div class="fecha-label">☀️ Salida agosto</div>
+        <div class="fecha-dates">16 al 27 de agosto 2026</div>
+        <div class="fecha-duracion">10 días · 11 noches</div>
+        <div class="fecha-precio-desde">Desde</div>
+        <div class="fecha-precio">USD 2.090</div>
+        <div class="fecha-base">por persona · base doble</div>
+        <a href="https://api.whatsapp.com/message/CXGNRCZE2JHSM1?autoload=1&app_absent=0" class="fecha-cta">Consultar agosto →</a>
+      </div>
+
+      <div class="fecha-card fecha-card--noviembre">
+        <div class="fecha-label">🌙 Salida noviembre</div>
+        <div class="fecha-dates">14 al 25 de noviembre 2026</div>
+        <div class="fecha-duracion">10 días · 11 noches</div>
+        <div class="fecha-precio-desde">Desde</div>
+        <div class="fecha-precio">USD 2.090</div>
+        <div class="fecha-base">por persona · base doble</div>
+        <a href="https://api.whatsapp.com/message/CXGNRCZE2JHSM1?autoload=1&app_absent=0" class="fecha-cta">Consultar noviembre →</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- PAQUETE DÍA DE MUERTOS -->
+<section class="paquetes paquetes--muertos" id="dia-de-muertos" style="background:linear-gradient(180deg,#1a0a2e 0%,#2d1045 40%,#1a0a2e 100%);padding:4rem 0;">
+  <div class="paquetes-inner">
+
+    <div class="paquetes-header">
+      <div class="s-eyebrow" style="color:#e8a020">Salida grupal · 11 días</div>
+      <h2 class="s-title" style="color:#fff">Experiencia <em style="color:#e8a020">Día de Muertos</em></h2>
+      <div class="teal-line" style="margin:1rem auto;background:#e8a020"></div>
+      <p class="paquetes-sub" style="color:rgba(255,255,255,.7)">México Colonial de punta a punta. La celebración más mágica del mundo, vivida desde adentro.</p>
+      <div style="margin-top:.8rem;font-size:.9rem;color:rgba(255,255,255,.5);letter-spacing:.05em">🏙️ CIUDAD DE MÉXICO &nbsp;·&nbsp; 🏞️ PÁTZCUARO &nbsp;·&nbsp; 🥃 GUADALAJARA &nbsp;·&nbsp; 🎭 GUANAJUATO &nbsp;·&nbsp; 🏛️ QUERÉTARO</div>
+    </div>
+
+    <!-- Hoteles -->
+    <div class="hoteles-grid" style="margin-top:2rem">
+
+      <div class="hotel-card" style="background:#2d1045;border:1px solid rgba(232,160,32,.2)">
+        <div class="hotel-body">
+          <div class="hotel-nights" style="background:#e8a020">3 noches</div>
+          <div class="hotel-dest" style="color:rgba(255,255,255,.5)">Ciudad de México</div>
+          <div class="hotel-name" style="color:#fff">Hotel Casa Blanca</div>
+          <div class="hotel-stars">★★★★</div>
+          <div class="hotel-desc" style="color:rgba(255,255,255,.65)">En el corazón de la capital, a pasos del Paseo de la Reforma. Base perfecta para las celebraciones del 1 y 2 de noviembre.</div>
+          <div class="hotel-tag">Con desayuno</div>
+        </div>
+      </div>
+
+      <div class="hotel-card" style="background:#2d1045;border:1px solid rgba(232,160,32,.2)">
+        <div class="hotel-body">
+          <div class="hotel-nights" style="background:#e8a020">1 noche</div>
+          <div class="hotel-dest" style="color:rgba(255,255,255,.5)">Pátzcuaro · Michoacán</div>
+          <div class="hotel-name" style="color:#fff">Misión Pátzcuaro Centro</div>
+          <div class="hotel-stars">★★★★</div>
+          <div class="hotel-desc" style="color:rgba(255,255,255,.65)">Joya colonial a orillas del lago, artesanías y mercados. El México profundo en su máxima expresión.</div>
+          <div class="hotel-tag">Con desayuno</div>
+        </div>
+      </div>
+
+      <div class="hotel-card" style="background:#2d1045;border:1px solid rgba(232,160,32,.2)">
+        <div class="hotel-body">
+          <div class="hotel-nights" style="background:#e8a020">2 noches</div>
+          <div class="hotel-dest" style="color:rgba(255,255,255,.5)">Guadalajara · Jalisco</div>
+          <div class="hotel-name" style="color:#fff">Hotel Plaza Diana</div>
+          <div class="hotel-stars">★★★★</div>
+          <div class="hotel-desc" style="color:rgba(255,255,255,.65)">Cuna del Mariachi y el Tequila. Base para visitar la ciudad y la Destilería Mundo Cuervo en Tequila.</div>
+          <div class="hotel-tag">Con desayuno</div>
+        </div>
+      </div>
+
+      <div class="hotel-card" style="background:#2d1045;border:1px solid rgba(232,160,32,.2)">
+        <div class="hotel-body">
+          <div class="hotel-nights" style="background:#e8a020">1 noche</div>
+          <div class="hotel-dest" style="color:rgba(255,255,255,.5)">Guanajuato</div>
+          <div class="hotel-name" style="color:#fff">Holiday Inn Express</div>
+          <div class="hotel-stars">★★★★</div>
+          <div class="hotel-desc" style="color:rgba(255,255,255,.65)">Ciudad universitaria Patrimonio de la Humanidad. Callejones románticos, templos barrocos y el mítico Funicular al Pípila.</div>
+          <div class="hotel-tag">Con desayuno</div>
+        </div>
+      </div>
+
+      <div class="hotel-card" style="background:#2d1045;border:1px solid rgba(232,160,32,.2)">
+        <div class="hotel-body">
+          <div class="hotel-nights" style="background:#e8a020">2 noches</div>
+          <div class="hotel-dest" style="color:rgba(255,255,255,.5)">Querétaro</div>
+          <div class="hotel-name" style="color:#fff">Doubletree by Hilton</div>
+          <div class="hotel-stars">★★★★</div>
+          <div class="hotel-desc" style="color:rgba(255,255,255,.65)">Desde Querétaro: Dolores Hidalgo, San Miguel de Allende y Atotonilco — tres Patrimonios UNESCO en un día.</div>
+          <div class="hotel-tag">Con desayuno</div>
+        </div>
+      </div>
+
+      <div class="hotel-card" style="background:#2d1045;border:1px solid rgba(232,160,32,.2)">
+        <div class="hotel-body">
+          <div class="hotel-nights" style="background:#e8a020">1 noche</div>
+          <div class="hotel-dest" style="color:rgba(255,255,255,.5)">Ciudad de México</div>
+          <div class="hotel-name" style="color:#fff">Real Alameda Gran Turismo</div>
+          <div class="hotel-stars">★★★★</div>
+          <div class="hotel-desc" style="color:rgba(255,255,255,.65)">El regreso a la capital para cerrar el circuito. Última noche con cena incluida antes del vuelo de regreso.</div>
+          <div class="hotel-tag">Con cena incluida</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Incluye -->
+    <div class="paquete-incluye" style="margin-top:2.5rem">
+      <div class="incluye-item-pkg" style="color:#fff">✈️ <span>Aéreos desde Buenos Aires</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🏨 <span>10 noches premium 4★</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🚕 <span>Traslados completos</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">💀 <span>Celebración Día de Muertos</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">⛵ <span>Trajinera en Xochimilco</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🎺 <span>Plaza Garibaldi nocturna</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🥃 <span>Destilería Mundo Cuervo</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🚡 <span>Funicular Pípila</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">⛪ <span>Basílica de Guadalupe</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🏛️ <span>Recinto Arqueológico Tula</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🍽️ <span>1 cena en Ciudad de México</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">👥 <span>Cupo máximo 12 personas</span></div>
+    </div>
+
+    <!-- Fecha y precio -->
+    <div class="fechas-grid" style="margin-top:2rem;grid-template-columns:1fr">
+      <div class="fecha-card" style="background:linear-gradient(135deg,#2d1045,#4a1a6e);border:1px solid rgba(232,160,32,.4);text-align:center">
+        <div class="fecha-label" style="color:#e8a020">💀 Salida única</div>
+        <div class="fecha-dates" style="color:#fff;font-size:1.1rem;font-weight:700">31 de octubre al 10 de noviembre 2026</div>
+        <div class="fecha-duracion" style="color:rgba(255,255,255,.6)">11 días · 11 noches</div>
+        <div class="fecha-precio-desde" style="color:rgba(255,255,255,.5)">Desde Buenos Aires</div>
+        <div class="fecha-precio" style="color:#e8a020;font-size:2.2rem">USD 2.690</div>
+        <div class="fecha-base" style="color:rgba(255,255,255,.5)">por persona · base doble · señá USD 1.900</div>
+        <a href="https://api.whatsapp.com/message/CXGNRCZE2JHSM1?autoload=1&app_absent=0" class="fecha-cta" style="background:#e8a020;color:#1a0a2e">Consultar disponibilidad →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- PAQUETE PUNTA CANA -->
+<section class="paquetes" id="punta-cana" style="background:linear-gradient(180deg,#0a2a3a 0%,#0d3d52 40%,#0a2a3a 100%);padding:4rem 0;">
+  <div class="paquetes-inner">
+
+    <div class="paquetes-header">
+      <div class="s-eyebrow" style="color:#00C29A">Salida grupal · 9 días</div>
+      <h2 class="s-title" style="color:#fff">Encantos de <em style="color:#00C29A">Dominicana</em></h2>
+      <div class="teal-line" style="margin:1rem auto"></div>
+      <p class="paquetes-sub" style="color:rgba(255,255,255,.7)">Todo incluido en Punta Cana. Playa sin oleaje, dos islas paradisíacas y la libertad de hacer lo que quieras.</p>
+      <div style="margin-top:.8rem;font-size:.9rem;color:rgba(255,255,255,.5);letter-spacing:.05em">🏖️ PUNTA CANA &nbsp;·&nbsp; 🏝️ ISLA SAONA &nbsp;·&nbsp; 🤿 ISLA CATALINA</div>
+    </div>
+
+    <!-- Hotel principal -->
+    <div style="margin-top:2rem;background:rgba(255,255,255,.05);border:1px solid rgba(0,194,154,.2);border-radius:1rem;padding:1.5rem 2rem">
+      <div style="text-align:center;margin-bottom:1.2rem">
+        <div class="hotel-nights" style="display:inline-block;margin-bottom:.6rem">8 noches · All Inclusive</div>
+        <div class="hotel-dest" style="color:rgba(255,255,255,.5)">Punta Cana · República Dominicana</div>
+        <div class="hotel-stars">★★★★</div>
+        <div class="hotel-name" style="color:#fff;font-size:1.4rem;margin:.3rem 0">Sunscape Coco Punta Cana</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem .8rem;font-size:.78rem;color:rgba(255,255,255,.7)">
+        <div>🍽️ 6 restaurantes temáticos</div>
+        <div>🍹 11 bares (3 en playa)</div>
+        <div>🏊 6 piscinas</div>
+        <div>🌴 Playa sin oleaje</div>
+        <div>☕ Cafetería tipo Café Martínez</div>
+        <div>🎭 Shows y animación diaria</div>
+        <div>👶 Zona acuática para chicos</div>
+        <div>🛏️ Habitaciones amplias y modernas</div>
+      </div>
+      <div style="font-size:.75rem;color:rgba(255,255,255,.4);padding-top:.8rem;margin-top:.8rem;border-top:1px solid rgba(255,255,255,.08)">
+        Los restaurantes incluyen: mexicano · italiano · asiático · buffet internacional · steakhouse de degustación (6 cortes). La dinámica del grupo es libre — solo los días de excursión arrancamos a las 8:00 am.
+      </div>
+    </div>
+
+    <!-- Excursiones -->
+    <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(0,194,154,.15);border-radius:.8rem;padding:1.2rem">
+        <div style="font-weight:700;color:#00C29A;margin-bottom:.6rem;font-size:.9rem">🏝️ Isla Saona — día completo</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.65);line-height:1.7">
+          🌊 Piscina natural en el mar<br>
+          🐚 Playa del Toro<br>
+          🍽️ Almuerzo frente al mar en Manu Juan<br>
+          🏖️ Playa Bañico (la mejor)<br>
+          🎬 Blue Lagoon (Piratas del Caribe)
+        </div>
+        <div style="margin-top:.8rem;font-size:.7rem;color:rgba(255,255,255,.35)">Almuerzo y bebidas incluidas</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(0,194,154,.15);border-radius:.8rem;padding:1.2rem">
+        <div style="font-weight:700;color:#00C29A;margin-bottom:.6rem;font-size:.9rem">🤿 Isla Catalina — día completo</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.65);line-height:1.7">
+          🐠 Snorkel en arrecife<br>
+          🏖️ Playa virgen<br>
+          🏡 Casas de famosos al borde del mar<br>
+          🐊 Lago Anaconda
+        </div>
+        <div style="margin-top:.8rem;font-size:.7rem;color:rgba(255,255,255,.35)">Almuerzo y bebidas incluidas</div>
+      </div>
+
+    </div>
+
+    <!-- Incluye -->
+    <div class="paquete-incluye" style="margin-top:2rem">
+      <div class="incluye-item-pkg" style="color:#fff">✈️ <span>Aéreos directos Arajet (BUE · COR · ROS)</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🏨 <span>8 noches Sunscape Coco All Inclusive</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🚕 <span>Traslados aeropuerto/hotel</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">👤 <span>Coordinador en destino</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🏝️ <span>Excursión Isla Saona (almuerzo incluido)</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🤿 <span>Excursión Isla Catalina (almuerzo incluido)</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">👥 <span>Cupo máximo 16 personas</span></div>
+    </div>
+
+    <!-- Vuelos nota -->
+    <div style="margin-top:1rem;background:rgba(0,194,154,.08);border:1px solid rgba(0,194,154,.2);border-radius:.6rem;padding:.8rem 1.2rem;font-size:.75rem;color:rgba(255,255,255,.55)">
+      ✈️ <strong style="color:rgba(255,255,255,.8)">Vuelos directos</strong> Arajet desde Buenos Aires, Córdoba y Rosario. Desde Mendoza con Copa Airlines vía Panamá (consultá precio diferenciado).
+    </div>
+
+    <!-- Precio -->
+    <div class="fechas-grid" style="margin-top:2rem;grid-template-columns:1fr">
+      <div class="fecha-card" style="background:linear-gradient(135deg,#0d3d52,#0a5a6e);border:1px solid rgba(0,194,154,.4);text-align:center">
+        <div class="fecha-label" style="color:#00C29A">🌴 Salida única</div>
+        <div class="fecha-dates" style="color:#fff;font-size:1.1rem;font-weight:700">28 de octubre al 5 de noviembre 2026</div>
+        <div class="fecha-duracion" style="color:rgba(255,255,255,.6)">9 días · 8 noches · All Inclusive</div>
+        <div class="fecha-precio-desde" style="color:rgba(255,255,255,.5)">por persona · base doble</div>
+        <div class="fecha-precio" style="color:#00C29A;font-size:2.2rem">USD 2.099</div>
+        <div class="fecha-base" style="color:rgba(255,255,255,.5)">Señá de reserva USD 1.300 · Saldo 30 días antes</div>
+        <a href="https://api.whatsapp.com/message/CXGNRCZE2JHSM1?autoload=1&app_absent=0" class="fecha-cta">Consultar disponibilidad →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- PAQUETE COLOMBIA -->
+<section class="paquetes" id="colombia" style="background:linear-gradient(180deg,#1a2a0a 0%,#243a0d 40%,#1a2a0a 100%);padding:4rem 0;">
+  <div class="paquetes-inner">
+
+    <div class="paquetes-header">
+      <div class="s-eyebrow" style="color:#f5c842">Salida grupal · 10 días · Representante de la agencia</div>
+      <h2 class="s-title" style="color:#fff">Colombia <em style="color:#f5c842">Épica</em></h2>
+      <div class="teal-line" style="margin:1rem auto;background:#f5c842"></div>
+      <p class="paquetes-sub" style="color:rgba(255,255,255,.7)">Medellín, la ciudad de la eterna primavera. Cartagena, el Caribe colonial. Dos ciudades, una experiencia.</p>
+      <div style="margin-top:.8rem;font-size:.9rem;color:#3a5a15;letter-spacing:.05em">🌸 MEDELLÍN &nbsp;·&nbsp; 🪨 GUATAPÉ &nbsp;·&nbsp; ☕ FINCA DE CAFÉ &nbsp;·&nbsp; 🏖️ CARTAGENA &nbsp;·&nbsp; 🏝️ PLAYA BLANCA</div>
+    </div>
+
+    <!-- Hoteles / etapas -->
+    <div style="margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+
+      <div style="background:#1a2a0a;border:1px solid rgba(26,42,10,.3);border-radius:1rem;padding:1.2rem;text-align:center">
+        <div style="display:inline-block;background:#1a2a0a;color:#f5c842;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;border-radius:2rem;margin-bottom:.6rem">5 noches</div>
+        <div style="color:rgba(255,255,255,.5);font-size:.72rem;margin-bottom:.2rem">Medellín · Zona Laureles</div>
+        <div style="color:#fff;font-size:1rem;font-weight:700;margin:.2rem 0">Hotel El Dorado de la 70</div>
+        <div style="color:#f5c842;font-size:.85rem;margin-bottom:.5rem">★★★★</div>
+        <div style="color:rgba(255,255,255,.65);font-size:.75rem;line-height:1.5">En la zona más cosmopolita y segura de Medellín. Base perfecta para moverse en metro y teleférico.</div>
+        <div style="margin-top:.8rem;display:inline-block;background:rgba(245,200,66,.15);color:#f5c842;border:1px solid rgba(245,200,66,.3);font-size:.65rem;padding:.25rem .7rem;border-radius:2rem">Con desayuno</div>
+      </div>
+
+      <div style="background:#1a2a0a;border:1px solid rgba(26,42,10,.3);border-radius:1rem;padding:1.2rem;text-align:center">
+        <div style="display:inline-block;background:#1a2a0a;color:#f5c842;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;border-radius:2rem;margin-bottom:.6rem">5 noches</div>
+        <div style="color:rgba(255,255,255,.5);font-size:.72rem;margin-bottom:.2rem">Cartagena · Bocagrande</div>
+        <div style="color:#fff;font-size:1rem;font-weight:700;margin:.2rem 0">Holiday Inn Bocagrande</div>
+        <div style="color:#f5c842;font-size:.85rem;margin-bottom:.5rem">★★★★</div>
+        <div style="color:rgba(255,255,255,.65);font-size:.75rem;line-height:1.5">En el corazón colonial. Arquitectura española del 1700 a pasos del mar Caribe. El contraste perfecto con Medellín.</div>
+        <div style="margin-top:.8rem;display:inline-block;background:rgba(245,200,66,.15);color:#f5c842;border:1px solid rgba(245,200,66,.3);font-size:.65rem;padding:.25rem .7rem;border-radius:2rem">Con desayuno</div>
+      </div>
+
+    </div>
+
+    <!-- Itinerario highlights -->
+    <div style="margin-top:1.5rem">
+      <div style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#f5c842;margin-bottom:1rem">Itinerario día a día</div>
+      <div style="display:grid;gap:.6rem">
+
+        <div style="background:rgba(255,255,255,.04);border-left:3px solid #1a2a0a;border-radius:0 .5rem .5rem 0;padding:.7rem 1rem;display:grid;grid-template-columns:80px 1fr;gap:.5rem;align-items:start">
+          <div style="font-size:.7rem;color:#f5c842;font-weight:700">Día 1<br><span style="color:rgba(255,255,255,.4);font-weight:400">14 jun</span></div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.75)"><strong style="color:#fff">Llegada a Medellín.</strong> Recorrido de orientación con guía local — dónde cenar, cómo moverse, referencias de la zona.</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,.04);border-left:3px solid #1a2a0a;border-radius:0 .5rem .5rem 0;padding:.7rem 1rem;display:grid;grid-template-columns:80px 1fr;gap:.5rem;align-items:start">
+          <div style="font-size:.7rem;color:#f5c842;font-weight:700">Día 2<br><span style="color:rgba(255,255,255,.4);font-weight:400">15 jun</span></div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.75)"><strong style="color:#fff">Guatapé + Piedra del Peñol.</strong> Transporte privado, paradas en pueblos coloniales, guía con contexto histórico. Uno de los 5 pueblos más lindos de Colombia.</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,.04);border-left:3px solid #1a2a0a;border-radius:0 .5rem .5rem 0;padding:.7rem 1rem;display:grid;grid-template-columns:80px 1fr;gap:.5rem;align-items:start">
+          <div style="font-size:.7rem;color:#f5c842;font-weight:700">Día 3<br><span style="color:rgba(255,255,255,.4);font-weight:400">16 jun</span></div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.75)"><strong style="color:#fff">Comuna 13.</strong> El barrio más icónico de Medellín. Metro + teleférico + experiencia inmersiva con guía local.</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,.04);border-left:3px solid #1a2a0a;border-radius:0 .5rem .5rem 0;padding:.7rem 1rem;display:grid;grid-template-columns:80px 1fr;gap:.5rem;align-items:start">
+          <div style="font-size:.7rem;color:#f5c842;font-weight:700">Día 4<br><span style="color:rgba(255,255,255,.4);font-weight:400">17 jun</span></div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.75)"><strong style="color:#fff">Finca cafetalera + Finca silletera.</strong> Recolección, trillado y preparación del café original colombiano. Después, la finca de flores donde los silleros — Patrimonio Cultural de Colombia — arman sus coloridas silletas.</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,.04);border-left:3px solid #1a2a0a;border-radius:0 .5rem .5rem 0;padding:.7rem 1rem;display:grid;grid-template-columns:80px 1fr;gap:.5rem;align-items:start">
+          <div style="font-size:.7rem;color:#f5c842;font-weight:700">Día 5<br><span style="color:rgba(255,255,255,.4);font-weight:400">18 jun</span></div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.75)"><strong style="color:#fff">Día libre en Medellín.</strong> El Poblado, Santa Fe, Castillo, parques. Cada uno a su ritmo — o en grupo si se quiere.</div>
+        </div>
+
+        <div style="background:rgba(245,200,66,.08);border-left:3px solid #1a2a0a;border-radius:0 .5rem .5rem 0;padding:.7rem 1rem;display:grid;grid-template-columns:80px 1fr;gap:.5rem;align-items:start">
+          <div style="font-size:.7rem;color:#f5c842;font-weight:700">Día 6<br><span style="color:rgba(255,255,255,.4);font-weight:400">19 jun</span></div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.75)"><strong style="color:#fff">✈️ Vuelo interno Medellín → Cartagena.</strong> Llegada y recorrido de orientación por la ciudad colonial.</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,.04);border-left:3px solid #1a2a0a;border-radius:0 .5rem .5rem 0;padding:.7rem 1rem;display:grid;grid-template-columns:80px 1fr;gap:.5rem;align-items:start">
+          <div style="font-size:.7rem;color:#f5c842;font-weight:700">Día 7<br><span style="color:rgba(255,255,255,.4);font-weight:400">20 jun</span></div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.75)"><strong style="color:#fff">Tierra Bomba.</strong> Playa caribeña con traslado desde el puerto, sombrilla y almuerzo incluidos.</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,.04);border-left:3px solid #1a2a0a;border-radius:0 .5rem .5rem 0;padding:.7rem 1rem;display:grid;grid-template-columns:80px 1fr;gap:.5rem;align-items:start">
+          <div style="font-size:.7rem;color:#f5c842;font-weight:700">Día 8<br><span style="color:rgba(255,255,255,.4);font-weight:400">21 jun</span></div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.75)"><strong style="color:#fff">City tour Cartagena.</strong> Castillo de San Felipe, Getsemaní, Plaza de Toros, Ciudad Amurallada, India Catalina.</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,.04);border-left:3px solid #1a2a0a;border-radius:0 .5rem .5rem 0;padding:.7rem 1rem;display:grid;grid-template-columns:80px 1fr;gap:.5rem;align-items:start">
+          <div style="font-size:.7rem;color:#f5c842;font-weight:700">Día 9<br><span style="color:rgba(255,255,255,.4);font-weight:400">22 jun</span></div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.75)"><strong style="color:#fff">Playa Blanca / Barú.</strong> Cabaña privada para el grupo sobre la playa. Almuerzo incluido.</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,.04);border-left:3px solid #1a2a0a;border-radius:0 .5rem .5rem 0;padding:.7rem 1rem;display:grid;grid-template-columns:80px 1fr;gap:.5rem;align-items:start">
+          <div style="font-size:.7rem;color:#f5c842;font-weight:700">Día 10<br><span style="color:rgba(255,255,255,.4);font-weight:400">23 jun</span></div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.75)"><strong style="color:#fff">Día libre / Bora Bora.</strong> Playa paradisíaca con aguas tibias y cristalinas (opcional) — o el día libre a elección.</div>
+        </div>
+
+        <div style="background:rgba(245,200,66,.08);border-left:3px solid #1a2a0a;border-radius:0 .5rem .5rem 0;padding:.7rem 1rem;display:grid;grid-template-columns:80px 1fr;gap:.5rem;align-items:start">
+          <div style="font-size:.7rem;color:#f5c842;font-weight:700">Día 11<br><span style="color:rgba(255,255,255,.4);font-weight:400">24 jun</span></div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.75)"><strong style="color:#fff">Regreso a Argentina.</strong> Traslado al aeropuerto coordinado por el equipo.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Incluye -->
+    <div class="paquete-incluye" style="margin-top:2rem">
+      <div class="incluye-item-pkg" style="color:#fff">✈️ <span>Aéreos desde tu ciudad de origen</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🏨 <span>10 noches con desayuno incluido</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🚐 <span>Traslados en destino</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🧑‍✈️ <span>Representante de la agencia en todo el viaje</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🗺️ <span>Guía local todo el circuito</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">✈️ <span>Vuelo interno Medellín → Cartagena</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">☕ <span>Experiencia en finca cafetalera</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">🌸 <span>Visita finca silletera</span></div>
+      <div class="incluye-item-pkg" style="color:#fff">👥 <span>Cupo máximo 16 personas</span></div>
+    </div>
+
+    <!-- Nota gastos -->
+    <div style="margin-top:1rem;background:rgba(245,200,66,.08);border:1px solid rgba(245,200,66,.2);border-radius:.6rem;padding:.8rem 1.2rem;font-size:.75rem;color:rgba(255,255,255,.55)">
+      💵 <strong style="color:rgba(255,255,255,.8)">Presupuesto recomendado en destino:</strong> USD 400–500 para comidas no incluidas, excursiones opcionales y gastos personales durante los 11 días.
+    </div>
+
+    <!-- Precios unificados -->
+    <div style="margin-top:2rem;background:#1a2a0a;border-radius:1rem;padding:1.8rem 2rem;text-align:center">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#f5c842;margin-bottom:1.2rem">Precio por persona · Base doble · 14–24 jun 2026</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:1.2rem">
+        <div style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);border-radius:.6rem;padding:.8rem .6rem">
+          <div style="font-size:.65rem;color:rgba(255,255,255,.5);margin-bottom:.3rem">BUE · COR · TUC · MDZ</div>
+          <div style="font-size:1.3rem;font-weight:700;color:#f5c842">USD 1.990</div>
+        </div>
+        <div style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);border-radius:.6rem;padding:.8rem .6rem">
+          <div style="font-size:.65rem;color:rgba(255,255,255,.5);margin-bottom:.3rem">Rosario</div>
+          <div style="font-size:1.3rem;font-weight:700;color:#f5c842">USD 2.090</div>
+        </div>
+        <div style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);border-radius:.6rem;padding:.8rem .6rem">
+          <div style="font-size:.65rem;color:rgba(255,255,255,.5);margin-bottom:.3rem">Salta</div>
+          <div style="font-size:1.3rem;font-weight:700;color:#f5c842">USD 2.190</div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(245,200,66,.2);padding-top:1rem">
+        <div style="font-size:.72rem;color:rgba(255,255,255,.5);margin-bottom:.2rem">Señá de reserva</div>
+        <div style="font-size:1.8rem;font-weight:700;color:#f5c842">USD 1.300</div>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-top:.2rem;margin-bottom:1rem">Saldo 30 días antes · 16 cupos limitados</div>
+        <a href="https://api.whatsapp.com/message/CXGNRCZE2JHSM1?autoload=1&app_absent=0" class="fecha-cta" style="background:#f5c842;color:#1a2a0a">Reservar mi lugar →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MÁS DESTINOS -->
+<section style="background:#0a1f18;padding:4rem 0;">
+  <div class="paquetes-inner">
+    <div class="paquetes-header">
+      <div class="s-eyebrow">Salidas grupales 2026</div>
+      <h2 class="s-title">Más destinos<br>disponibles</h2>
+      <div class="teal-line" style="margin:1rem auto"></div>
+      <p class="paquetes-sub">Europa, Asia, Medio Oriente y más. Consultá por el destino que te interesa y te damos todos los detalles.</p>
+    </div>
+    <div style="margin-top:2rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.8rem">
+      
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.8rem;padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.4rem">Berlín, Capitales Imperiales y Baviera</div>
+          <div style="font-size:.75rem;color:#00C29A;font-weight:600">27 May 2026 · 20 días</div>
+        </div>
+        <a href="https://wa.me/5492233467797?text=Hola%20Nicol%C3%A1s%2C%20me%20interesa%20consultar%20por%20el%20viaje%20a%20Berl%C3%ADn%2C%20Capitales%20Imperiales%20y%20Baviera%20%28salida%2027%20May%202026%29.%20%C2%BFPod%C3%A9s%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" style="display:block;text-align:center;background:transparent;border:1px solid rgba(0,194,154,.5);color:#00C29A;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:.4rem;text-decoration:none;transition:all .2s">Consultar →</a>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.8rem;padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.4rem">Polonia y Bálticos</div>
+          <div style="font-size:.75rem;color:#00C29A;font-weight:600">31 Jul 2026 · 18 días</div>
+        </div>
+        <a href="https://wa.me/5492233467797?text=Hola%20Nicol%C3%A1s%2C%20me%20interesa%20consultar%20por%20el%20viaje%20a%20Polonia%20y%20B%C3%A1lticos%20%28salida%2031%20Jul%202026%29.%20%C2%BFPod%C3%A9s%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" style="display:block;text-align:center;background:transparent;border:1px solid rgba(0,194,154,.5);color:#00C29A;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:.4rem;text-decoration:none;transition:all .2s">Consultar →</a>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.8rem;padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.4rem">Costa Amalfitana, Sicilia y Malta</div>
+          <div style="font-size:.75rem;color:#00C29A;font-weight:600">16 Ago 2026 · 20 días</div>
+        </div>
+        <a href="https://wa.me/5492233467797?text=Hola%20Nicol%C3%A1s%2C%20me%20interesa%20consultar%20por%20el%20viaje%20a%20Costa%20Amalfitana%2C%20Sicilia%20y%20Malta%20%28salida%2016%20Ago%202026%29.%20%C2%BFPod%C3%A9s%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" style="display:block;text-align:center;background:transparent;border:1px solid rgba(0,194,154,.5);color:#00C29A;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:.4rem;text-decoration:none;transition:all .2s">Consultar →</a>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.8rem;padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.4rem">Inglaterra, Escocia, Irlanda y Gales</div>
+          <div style="font-size:.75rem;color:#00C29A;font-weight:600">21 Ago 2026 · 22 días</div>
+        </div>
+        <a href="https://wa.me/5492233467797?text=Hola%20Nicol%C3%A1s%2C%20me%20interesa%20consultar%20por%20el%20viaje%20a%20Inglaterra%2C%20Escocia%2C%20Irlanda%20y%20Gales%20%28salida%2021%20Ago%202026%29.%20%C2%BFPod%C3%A9s%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" style="display:block;text-align:center;background:transparent;border:1px solid rgba(0,194,154,.5);color:#00C29A;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:.4rem;text-decoration:none;transition:all .2s">Consultar →</a>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.8rem;padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.4rem">China y Hong Kong</div>
+          <div style="font-size:.75rem;color:#00C29A;font-weight:600">1 Sep 2026 · 20 días</div>
+        </div>
+        <a href="https://wa.me/5492233467797?text=Hola%20Nicol%C3%A1s%2C%20me%20interesa%20consultar%20por%20el%20viaje%20a%20China%20y%20Hong%20Kong%20%28salida%201%20Sep%202026%29.%20%C2%BFPod%C3%A9s%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" style="display:block;text-align:center;background:transparent;border:1px solid rgba(0,194,154,.5);color:#00C29A;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:.4rem;text-decoration:none;transition:all .2s">Consultar →</a>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.8rem;padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.4rem">Turquía y Grecia</div>
+          <div style="font-size:.75rem;color:#00C29A;font-weight:600">5 Sep 2026 · 21 días</div>
+        </div>
+        <a href="https://wa.me/5492233467797?text=Hola%20Nicol%C3%A1s%2C%20me%20interesa%20consultar%20por%20el%20viaje%20a%20Turqu%C3%ADa%20y%20Grecia%20%28salida%205%20Sep%202026%29.%20%C2%BFPod%C3%A9s%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" style="display:block;text-align:center;background:transparent;border:1px solid rgba(0,194,154,.5);color:#00C29A;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:.4rem;text-decoration:none;transition:all .2s">Consultar →</a>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.8rem;padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.4rem">Malasia, Singapur y Bali</div>
+          <div style="font-size:.75rem;color:#00C29A;font-weight:600">15 Sep 2026 · 18 días</div>
+        </div>
+        <a href="https://wa.me/5492233467797?text=Hola%20Nicol%C3%A1s%2C%20me%20interesa%20consultar%20por%20el%20viaje%20a%20Malasia%2C%20Singapur%20y%20Bali%20%28salida%2015%20Sep%202026%29.%20%C2%BFPod%C3%A9s%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" style="display:block;text-align:center;background:transparent;border:1px solid rgba(0,194,154,.5);color:#00C29A;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:.4rem;text-decoration:none;transition:all .2s">Consultar →</a>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.8rem;padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.4rem">Turquía y Grecia</div>
+          <div style="font-size:.75rem;color:#00C29A;font-weight:600">19 Sep 2026 · 21 días</div>
+        </div>
+        <a href="https://wa.me/5492233467797?text=Hola%20Nicol%C3%A1s%2C%20me%20interesa%20consultar%20por%20el%20viaje%20a%20Turqu%C3%ADa%20y%20Grecia%20%28salida%2019%20Sep%202026%29.%20%C2%BFPod%C3%A9s%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" style="display:block;text-align:center;background:transparent;border:1px solid rgba(0,194,154,.5);color:#00C29A;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:.4rem;text-decoration:none;transition:all .2s">Consultar →</a>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.8rem;padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.4rem">Azerbaiyán, Georgia y Armenia</div>
+          <div style="font-size:.75rem;color:#00C29A;font-weight:600">26 Sep 2026 · 19 días</div>
+        </div>
+        <a href="https://wa.me/5492233467797?text=Hola%20Nicol%C3%A1s%2C%20me%20interesa%20consultar%20por%20el%20viaje%20a%20Azerbaiy%C3%A1n%2C%20Georgia%20y%20Armenia%20%28salida%2026%20Sep%202026%29.%20%C2%BFPod%C3%A9s%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" style="display:block;text-align:center;background:transparent;border:1px solid rgba(0,194,154,.5);color:#00C29A;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:.4rem;text-decoration:none;transition:all .2s">Consultar →</a>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.8rem;padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.4rem">Egipto y Jordania</div>
+          <div style="font-size:.75rem;color:#00C29A;font-weight:600">1 Oct 2026 · 19 días</div>
+        </div>
+        <a href="https://wa.me/5492233467797?text=Hola%20Nicol%C3%A1s%2C%20me%20interesa%20consultar%20por%20el%20viaje%20a%20Egipto%20y%20Jordania%20%28salida%201%20Oct%202026%29.%20%C2%BFPod%C3%A9s%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" style="display:block;text-align:center;background:transparent;border:1px solid rgba(0,194,154,.5);color:#00C29A;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:.4rem;text-decoration:none;transition:all .2s">Consultar →</a>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.8rem;padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.4rem">Norte de España y Portugal</div>
+          <div style="font-size:.75rem;color:#00C29A;font-weight:600">11 Oct 2026 · 21 días</div>
+        </div>
+        <a href="https://wa.me/5492233467797?text=Hola%20Nicol%C3%A1s%2C%20me%20interesa%20consultar%20por%20el%20viaje%20a%20Norte%20de%20Espa%C3%B1a%20y%20Portugal%20%28salida%2011%20Oct%202026%29.%20%C2%BFPod%C3%A9s%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" style="display:block;text-align:center;background:transparent;border:1px solid rgba(0,194,154,.5);color:#00C29A;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:.4rem;text-decoration:none;transition:all .2s">Consultar →</a>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.8rem;padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.4rem">Corea del Sur y Japón</div>
+          <div style="font-size:.75rem;color:#00C29A;font-weight:600">23 Oct 2026 · 21 días</div>
+        </div>
+        <a href="https://wa.me/5492233467797?text=Hola%20Nicol%C3%A1s%2C%20me%20interesa%20consultar%20por%20el%20viaje%20a%20Corea%20del%20Sur%20y%20Jap%C3%B3n%20%28salida%2023%20Oct%202026%29.%20%C2%BFPod%C3%A9s%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" style="display:block;text-align:center;background:transparent;border:1px solid rgba(0,194,154,.5);color:#00C29A;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:.4rem;text-decoration:none;transition:all .2s">Consultar →</a>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.8rem;padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between;gap:.8rem">
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.4rem">Vietnam, Camboya y Tailandia</div>
+          <div style="font-size:.75rem;color:#00C29A;font-weight:600">22 Nov 2026 · 24 días</div>
+        </div>
+        <a href="https://wa.me/5492233467797?text=Hola%20Nicol%C3%A1s%2C%20me%20interesa%20consultar%20por%20el%20viaje%20a%20Vietnam%2C%20Camboya%20y%20Tailandia%20%28salida%2022%20Nov%202026%29.%20%C2%BFPod%C3%A9s%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" style="display:block;text-align:center;background:transparent;border:1px solid rgba(0,194,154,.5);color:#00C29A;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .8rem;border-radius:.4rem;text-decoration:none;transition:all .2s">Consultar →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contacto">
+  <div class="cta-inner">
+    <div class="s-eyebrow" style="justify-content:center;display:flex">¿Te animás?</div>
+    <h2 class="s-title">Hablemos de tu<br>próximo <em>viaje</em></h2>
+    <div class="teal-line" style="margin:1.2rem auto"></div>
+    <p>No cotizás solo un pasaje.<br>Te asesorás con alguien que ya estuvo ahí.</p>
+    <a href="https://api.whatsapp.com/message/CXGNRCZE2JHSM1?autoload=1&app_absent=0" class="wa-btn">💬 Escribime por WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">ANIMATE <span>A VIAJAR</span></div>
+  <div class="f-links">
+    <a href="#historia">Mi historia</a>
+    <a href="#testimonios">Testimonios</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <div class="f-copy">© 2026 · La Plata, Buenos Aires</div>
+</footer>
+
+<script>
+function abrirLightbox(placeholder) {
+  const img = document.getElementById('lb-img');
+  // Buscar la imagen real si existe, sino mostrar placeholder visual
+  const cards = document.querySelectorAll('.t-screenshot img');
+  let src = null;
+  cards.forEach(i => { if(i.src && i.src.includes('base64') && i.alt === placeholder) src = i.src; });
+  if(src) {
+    img.src = src;
+    document.getElementById('lightbox').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+// Lightbox para imágenes reales cuando se inserten
+document.querySelectorAll('.t-screenshot img').forEach(img => {
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', e => {
+    document.getElementById('lb-img').src = img.src;
+    document.getElementById('lightbox').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    e.stopPropagation();
+  });
+});
+</script>
+</body>
+</html>
