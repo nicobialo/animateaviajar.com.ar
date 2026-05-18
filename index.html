@@ -576,10 +576,10 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
       <p>Lo que más me gratifica es esperar el momento en que volvés y me decís: <strong>"Tenías razón. Gracias. Fue el viaje de mi vida."</strong></p>
     </div>
   </div>
-  <div style="max-width:1000px;margin:2.5rem auto 0;display:grid;grid-template-columns:1fr;gap:.5rem">
+  <div class="galeria-historia" style="max-width:1000px;margin:2.5rem auto 0;display:grid;grid-template-columns:1fr;gap:.5rem">
 
     <!-- Set de grabación -->
-    <div style="position:relative;overflow:hidden;background:#142E24;height:240px;cursor:zoom-in" onclick="abrirLightboxImg('images/set-tv.jpg')">
+    <div class="galeria-set" style="position:relative;overflow:hidden;background:#142E24;height:240px;cursor:zoom-in" onclick="abrirLightboxImg('images/set-tv.jpg')">
       <img src="images/set-tv.jpg" alt="Set TV" style="width:100%;height:100%;object-fit:cover;object-position:center top" onerror="this.style.display='none'">
       <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(10,31,24,.9),transparent);padding:.6rem .8rem">
         <div style="font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#00C29A">Set de grabación · Ciudad de México</div>
@@ -588,7 +588,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
     </div>
 
     <!-- Clarín -->
-    <div style="position:relative;overflow:hidden;background:#142E24;height:300px;cursor:zoom-in" onclick="abrirLightboxImg('images/clarin.jpg')">
+    <div class="galeria-clarin" style="position:relative;overflow:hidden;background:#142E24;height:300px;cursor:zoom-in" onclick="abrirLightboxImg('images/clarin.jpg')">
       <img src="images/clarin.jpg" alt="Clarín" style="width:100%;height:100%;object-fit:cover;object-position:center top" onerror="this.style.display='none'">
       <div style="position:absolute;top:.6rem;left:.6rem;background:rgba(0,194,154,0.15);border:1px solid rgba(0,194,154,0.35);padding:.2rem .55rem;font-size:.46rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#00C29A">📰 Como se vio en Clarín</div>
       <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(10,31,24,.9),transparent);padding:.6rem .8rem">
@@ -598,8 +598,8 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
     </div>
 
     <!-- Melaque -->
-    <div style="position:relative;overflow:hidden;background:#142E24;height:240px;cursor:zoom-in" onclick="abrirLightboxImg('images/melaque.jpg')">
-      <img src="images/melaque.jpg" alt="Melaque" style="width:100%;height:100%;object-fit:cover;object-position:center 25%" onerror="this.style.display='none'">
+    <div class="galeria-melaque" style="position:relative;overflow:hidden;background:#142E24;height:240px;cursor:zoom-in" onclick="abrirLightboxImg('images/melaque.jpg')">
+      <img src="images/melaque.jpg" alt="Melaque" style="width:100%;height:100%;object-fit:cover;object-position:center 35%" onerror="this.style.display='none'">
       <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(10,31,24,.9),transparent);padding:.6rem .8rem">
         <div style="font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#00C29A">Playa Melaque · Jalisco</div>
         <div style="font-size:.54rem;color:rgba(255,255,255,.45);margin-top:.1rem">Con mi familia · Pacífico mexicano · 2021</div>
@@ -610,13 +610,10 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
 
   <style>
   @media(min-width:700px){
-    .galeria-historia {
-      grid-template-columns: 2fr 1fr !important;
-      grid-template-rows: 240px 240px !important;
-    }
-    .galeria-set { grid-column: 1; grid-row: 1; }
-    .galeria-clarin { grid-column: 2; grid-row: 1 / 3; height: 100% !important; }
-    .galeria-melaque { grid-column: 1; grid-row: 2; }
+    .galeria-historia { grid-template-columns: 2fr 1fr !important; }
+    .galeria-set { grid-column: 1; grid-row: 1; height: 240px !important; }
+    .galeria-clarin { grid-column: 2; grid-row: 1 / 3; height: auto !important; min-height: 490px; }
+    .galeria-melaque { grid-column: 1; grid-row: 2; height: 240px !important; }
   }
   </style>
 </section>
