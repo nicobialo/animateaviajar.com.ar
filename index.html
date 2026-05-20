@@ -31,8 +31,14 @@ nav ul { display: none; }
 .hero h1 { font-size: clamp(2.6rem, 11vw, 4.5rem); font-weight: 900; line-height: 1.02; letter-spacing: -.02em; margin-bottom: 1rem; }
 .hero h1 em { font-style: normal; color: var(--orange2); }
 .hero-frase { font-size: .72rem; font-weight: 900; letter-spacing: .1em; color: var(--teal3); margin-bottom: 2rem; text-transform: uppercase; }
-.hero-btns { display: flex; flex-direction: column; gap: .7rem; margin-top: 16rem; max-width: 340px; }
-@media(min-width:900px){ .hero { align-items: center; padding: 7rem 2rem 4rem; } .hero-btns { flex-direction: row; margin-top: 0; max-width: none; } .hero-btns a { width: auto !important; } }
+.hero-btns { display: flex; flex-direction: column; gap: .7rem; margin-top: 16rem; }
+.hero-btns a, .btn-mexico-hero { width: 100%; box-sizing: border-box; text-align: center; }
+.btn-mexico-hero { display:block; margin-top:.8rem; background:rgba(255,153,0,0.12); border:1px solid rgba(255,153,0,0.4); color:var(--orange2); font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; padding:.9rem 1.8rem; text-decoration:none; }
+@media(min-width:900px){
+  .hero { align-items: center; padding: 7rem 2rem 4rem; }
+  .hero-btns { margin-top: 0; flex-direction: row; max-width: 480px; }
+  .btn-mexico-hero { max-width: 480px; }
+}
 .btn-primary { display: inline-block; background: var(--teal); color: var(--white); font-size: .62rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: .9rem 1.8rem; text-decoration: none; }
 .btn-ghost { display: inline-block; border: 1px solid rgba(0,194,154,0.4); color: var(--teal2); font-size: .62rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: .9rem 1.8rem; text-decoration: none; }
 
@@ -143,7 +149,9 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
   .historia-inner { grid-template-columns: 1fr 1fr; gap: 4rem; }
   .historia-text { margin-top: 0; }
   .historia-img { height: 420px; }
-  .testi-grid { grid-template-columns: repeat(4, 1fr); }
+  .testi-grid { display: flex; flex-wrap: wrap; }
+  .testi-grid .t-card { width: calc(25% - .6rem); }
+  .testi-grid .t-card.featured { width: calc(50% - .6rem); }
   .servicios-inner { grid-template-columns: 1fr 1fr; gap: 4rem; }
   .serv-img { height: 400px; order: 0; }
   footer { flex-direction: row; justify-content: space-between; text-align: left; }
@@ -549,7 +557,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
         <a href="#testimonios" class="btn-primary" style="width:100%;text-align:center">Ver experiencias</a>
         <a href="#contacto" class="btn-ghost" style="width:100%;text-align:center">Escribime</a>
       </div>
-      <a href="/mexico" style="display:block;margin-top:.8rem;background:rgba(255,153,0,0.12);border:1px solid rgba(255,153,0,0.4);color:var(--orange2);font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.9rem 1.8rem;text-decoration:none;text-align:center;width:100%;box-sizing:border-box">🗺️ ¿Ya tenés tu viaje a México? → Ver servicios</a>
+      <a href="/mexico" class="btn-mexico-hero">🗺️ ¿Ya tenés tu viaje a México? → Ver servicios</a>
     </div>
   </div>
 </section>
@@ -653,11 +661,11 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
       <div class="t-screenshot" onclick="abrirLightboxImg('images/t-hector.jpg')"><img src="images/t-hector.jpg" alt="Héctor" onerror="this.parentElement.querySelector('.t-ph').style.display='block';this.style.display='none'"><div class="t-ph" style="display:none"><div class="t-ph-icon">🖼️</div></div><div class="screen-badge">💬 Captura real</div></div>
       <div class="t-body"><div class="t-stars">★★★★★</div><div class="t-text">"Gracias Nicolás por todo y sobre todo por la calidad de persona que sos. Días hermosos y maravillosos."</div><div class="t-author">Héctor & Marisa</div><div class="t-dest">Exp Maya 2 · Abril 2025</div><div class="t-tag">❤️ Calidad humana</div></div>
     </div>
-    <div class="t-card featured">
+    <div class="t-card featured" style="order:8">
       <div class="t-screenshot" onclick="abrirLightboxImg('images/t-blanca.jpg')"><img src="images/t-blanca.jpg" alt="Blanca" onerror="this.parentElement.querySelector('.t-ph').style.display='block';this.style.display='none'"><div class="t-ph" style="display:none"><div class="t-ph-icon">🖼️</div></div><div class="screen-badge">💬 Captura real</div></div>
       <div class="t-body"><div class="t-stars">★★★★★</div><div class="t-text">"Hermosa experiencia y hermoso grupo. No es fácil viajar sola, pero me incorporaron como una más de este contingente."</div><div class="t-author">Blanca</div><div class="t-dest">Exp Maya 5 · Junio 2025</div><div class="t-tag">✈️ Integrada al grupo</div></div>
     </div>
-    <div class="t-card">
+    <div class="t-card" style="order:7">
       <div class="t-screenshot" onclick="abrirLightboxImg('images/t-natalia.jpg')"><img src="images/t-natalia.jpg" alt="Natalia" onerror="this.parentElement.querySelector('.t-ph').style.display='block';this.style.display='none'"><div class="t-ph" style="display:none"><div class="t-ph-icon">🖼️</div></div><div class="screen-badge">💬 Captura real</div></div>
       <div class="t-body"><div class="t-stars">★★★★★</div><div class="t-text">"Me voy felizzzz. Cada uno fue imprescindible en esta aventura. Una gran aventura compartida."</div><div class="t-author">Natalia & grupo</div><div class="t-dest">Exp Maya 4 · Mayo 2025</div><div class="t-tag">🎉 Experiencia grupal</div></div>
     </div>
@@ -754,13 +762,16 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
         <span class="pkg-btn-hint" style="color:rgba(255,255,255,.3)">Se abre en esta misma página</span>
       </div>
     </div>
-    <div class="hoteles-grid" style="margin-top:2rem">
+    <div class="hoteles-grid" id="hoteles-muertos" style="margin-top:2rem;display:none">
       <div class="hotel-card" style="background:#2d1045;border:1px solid rgba(232,160,32,.2)"><div class="hotel-body"><div class="hotel-nights" style="background:#e8a020;color:#1a0a2e;border:none">3 noches</div><div class="hotel-dest" style="color:rgba(255,255,255,.5)">Ciudad de México</div><div class="hotel-name" style="color:#fff">Hotel Casa Blanca</div><div class="hotel-stars">★★★★</div><div class="hotel-desc" style="color:rgba(255,255,255,.65)">En el corazón de la capital, a pasos del Paseo de la Reforma.</div><div class="hotel-tag">Con desayuno</div></div></div>
       <div class="hotel-card" style="background:#2d1045;border:1px solid rgba(232,160,32,.2)"><div class="hotel-body"><div class="hotel-nights" style="background:#e8a020;color:#1a0a2e;border:none">1 noche</div><div class="hotel-dest" style="color:rgba(255,255,255,.5)">Pátzcuaro · Michoacán</div><div class="hotel-name" style="color:#fff">Misión Pátzcuaro Centro</div><div class="hotel-stars">★★★★</div><div class="hotel-desc" style="color:rgba(255,255,255,.65)">Joya colonial a orillas del lago. El México profundo en su máxima expresión.</div><div class="hotel-tag">Con desayuno</div></div></div>
       <div class="hotel-card" style="background:#2d1045;border:1px solid rgba(232,160,32,.2)"><div class="hotel-body"><div class="hotel-nights" style="background:#e8a020;color:#1a0a2e;border:none">2 noches</div><div class="hotel-dest" style="color:rgba(255,255,255,.5)">Guadalajara · Jalisco</div><div class="hotel-name" style="color:#fff">Hotel Plaza Diana</div><div class="hotel-stars">★★★★</div><div class="hotel-desc" style="color:rgba(255,255,255,.65)">Cuna del Mariachi y el Tequila.</div><div class="hotel-tag">Con desayuno</div></div></div>
       <div class="hotel-card" style="background:#2d1045;border:1px solid rgba(232,160,32,.2)"><div class="hotel-body"><div class="hotel-nights" style="background:#e8a020;color:#1a0a2e;border:none">1 noche</div><div class="hotel-dest" style="color:rgba(255,255,255,.5)">Guanajuato</div><div class="hotel-name" style="color:#fff">Holiday Inn Express</div><div class="hotel-stars">★★★★</div><div class="hotel-desc" style="color:rgba(255,255,255,.65)">Ciudad Patrimonio UNESCO. Callejones románticos y templos barrocos.</div><div class="hotel-tag">Con desayuno</div></div></div>
       <div class="hotel-card" style="background:#2d1045;border:1px solid rgba(232,160,32,.2)"><div class="hotel-body"><div class="hotel-nights" style="background:#e8a020;color:#1a0a2e;border:none">2 noches</div><div class="hotel-dest" style="color:rgba(255,255,255,.5)">Querétaro</div><div class="hotel-name" style="color:#fff">Doubletree by Hilton</div><div class="hotel-stars">★★★★</div><div class="hotel-desc" style="color:rgba(255,255,255,.65)">Tres Patrimonios UNESCO en un día: Dolores Hidalgo, San Miguel de Allende y Atotonilco.</div><div class="hotel-tag">Con desayuno</div></div></div>
       <div class="hotel-card" style="background:#2d1045;border:1px solid rgba(232,160,32,.2)"><div class="hotel-body"><div class="hotel-nights" style="background:#e8a020;color:#1a0a2e;border:none">1 noche</div><div class="hotel-dest" style="color:rgba(255,255,255,.5)">Ciudad de México</div><div class="hotel-name" style="color:#fff">Real Alameda Gran Turismo</div><div class="hotel-stars">★★★★</div><div class="hotel-desc" style="color:rgba(255,255,255,.65)">Última noche con cena incluida antes del vuelo de regreso.</div><div class="hotel-tag">Con cena incluida</div></div></div>
+    </div>
+    <div style="text-align:center;margin-top:1.2rem">
+      <button onclick="var h=document.getElementById('hoteles-muertos');var b=this;if(h.style.display==='none'){h.style.display='grid';b.textContent='🏨 Ocultar hoteles ▲'}else{h.style.display='none';b.textContent='🏨 Ver hoteles incluidos ▼'}" style="background:rgba(232,160,32,0.12);border:1px solid rgba(232,160,32,0.4);color:#e8a020;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.8rem 1.6rem;cursor:pointer;border-radius:4px">🏨 Ver hoteles incluidos ▼</button>
     </div>
     <div class="paquete-incluye" style="margin-top:2rem">
       <div class="incluye-item-pkg" style="color:#fff">✈️ <span>Aéreos desde Buenos Aires</span></div>
@@ -804,9 +815,23 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
         <span class="pkg-btn-hint" style="color:rgba(255,255,255,.3)">Se abre en esta misma página</span>
       </div>
     </div>
-    <div style="margin-top:2rem;background:rgba(255,255,255,.05);border:1px solid rgba(0,194,154,.2);border-radius:1rem;padding:1.5rem 2rem">
-      <div style="text-align:center;margin-bottom:1.2rem"><div class="hotel-nights" style="display:inline-block;margin-bottom:.6rem">8 noches · All Inclusive</div><div class="hotel-dest" style="color:rgba(255,255,255,.5)">Punta Cana · República Dominicana</div><div class="hotel-stars">★★★★</div><div class="hotel-name" style="color:#fff;font-size:1.4rem;margin:.3rem 0">Sunscape Coco Punta Cana</div></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem .8rem;font-size:.78rem;color:rgba(255,255,255,.7)"><div>🍽️ 6 restaurantes temáticos</div><div>🍹 11 bares (3 en playa)</div><div>🏊 6 piscinas</div><div>🌴 Playa sin oleaje</div><div>☕ Cafetería tipo Café Martínez</div><div>🎭 Shows y animación diaria</div><div>👶 Zona acuática para chicos</div><div>🛏️ Habitaciones amplias y modernas</div></div>
+    <div style="margin-top:2rem;border-radius:1rem;overflow:hidden;border:1px solid rgba(0,194,154,.2)">
+      <div style="position:relative;height:220px;overflow:hidden">
+        <img src="images/hotel-sunscape.jpg" alt="Sunscape Coco Punta Cana" style="width:100%;height:100%;object-fit:cover;object-position:center" onerror="this.parentElement.style.background='linear-gradient(135deg,#0d3d52,#0a5a6e)'">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,42,58,0.95) 0%,rgba(10,42,58,0.3) 100%)"></div>
+        <div style="position:absolute;bottom:1rem;left:1.5rem;right:1.5rem">
+          <div class="hotel-nights" style="display:inline-block;margin-bottom:.4rem">8 noches · All Inclusive</div>
+          <div class="hotel-dest" style="color:rgba(255,255,255,.6)">Punta Cana · República Dominicana</div>
+          <div class="hotel-stars">★★★★</div>
+          <div class="hotel-name" style="color:#fff;font-size:1.3rem;margin:.2rem 0">Sunscape Coco Punta Cana</div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,.05);padding:1.2rem 1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:.5rem .8rem;font-size:.78rem;color:rgba(255,255,255,.7)">
+        <div>🍽️ 6 restaurantes temáticos</div><div>🍹 11 bares (3 en playa)</div>
+        <div>🏊 6 piscinas</div><div>🌴 Playa sin oleaje</div>
+        <div>☕ Cafetería tipo Café Martínez</div><div>🎭 Shows y animación diaria</div>
+        <div>👶 Zona acuática para chicos</div><div>🛏️ Habitaciones amplias y modernas</div>
+      </div>
     </div>
     <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
       <div style="background:rgba(255,255,255,.05);border:1px solid rgba(0,194,154,.15);border-radius:.8rem;padding:1.2rem"><div style="font-weight:700;color:#00C29A;margin-bottom:.6rem">🏝️ Isla Saona — día completo</div><div style="font-size:.75rem;color:rgba(255,255,255,.65);line-height:1.7">🌊 Piscina natural en el mar<br>🐚 Playa del Toro<br>🍽️ Almuerzo frente al mar<br>🏖️ Playa Bañico<br>🎬 Blue Lagoon</div><div style="margin-top:.8rem;font-size:.7rem;color:rgba(255,255,255,.35)">Almuerzo y bebidas incluidas</div></div>
