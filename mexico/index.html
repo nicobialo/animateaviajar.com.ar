@@ -8,13 +8,17 @@
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --dark: #0A1F18; --dark2: #0F2A20; --dark3: #142E24;
+  --dark: #0D0A14; --dark2: #120F1C; --dark3: #16121E;
   --teal: #1D9E75; --teal2: #00C29A; --teal3: #00E5B5;
   --orange: #E8600A; --orange2: #FF9A00;
   --white: #ffffff; --muted: rgba(255,255,255,0.5);
 }
 html { scroll-behavior: smooth; }
 body { font-family: 'Montserrat', sans-serif; background: var(--dark); color: var(--white); overflow-x: hidden; }
+
+/* FIXED BACK BUTTON */
+.fixed-back { position: fixed; bottom: 1.2rem; left: 1.2rem; z-index: 999; background: rgba(13,10,20,0.92); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7); font-family: 'Montserrat',sans-serif; font-size: .54rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; padding: .65rem 1.1rem; text-decoration: none; border-radius: 20px; backdrop-filter: blur(8px); display: flex; align-items: center; gap: .4rem; transition: all .2s; }
+.fixed-back:hover { color: var(--white); border-color: rgba(255,255,255,0.3); }
 
 /* NAV */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.2rem; background: rgba(10,31,24,0.97); border-bottom: 1px solid rgba(0,194,154,0.1); backdrop-filter: blur(8px); }
@@ -96,7 +100,7 @@ section { padding: 4rem 1.4rem; }
 .btn-tour-ver:hover { background: rgba(0,194,154,.22); }
 
 /* XCARET */
-.xcaret-section { background: linear-gradient(180deg, #0a2a15 0%, #0d3520 50%, #0a2a15 100%); }
+.xcaret-section { background: linear-gradient(180deg, #0f0c1a 0%, #14102a 50%, #0f0c1a 100%); }
 .xcaret-header { text-align: center; margin-bottom: 1rem; }
 .xcaret-badge { display: inline-block; background: rgba(0,194,154,0.12); border: 1px solid rgba(0,194,154,0.3); color: var(--teal2); font-size: .5rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; padding: .35rem .9rem; border-radius: 20px; margin-bottom: 1.2rem; }
 .xcaret-discount-box { background: rgba(0,194,154,0.08); border: 1px solid rgba(0,194,154,0.25); border-radius: 10px; padding: 1rem 1.4rem; margin-bottom: 2rem; text-align: center; max-width: 600px; margin-left: auto; margin-right: auto; }
@@ -185,6 +189,9 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
 </style>
 </head>
 <body>
+
+<!-- BOTÓN FIJO VOLVER -->
+<a href="/" class="fixed-back">← Inicio</a>
 
 <!-- ===== MODALES TOURS ===== -->
 
