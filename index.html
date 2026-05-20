@@ -31,8 +31,8 @@ nav ul { display: none; }
 .hero h1 { font-size: clamp(2.6rem, 11vw, 4.5rem); font-weight: 900; line-height: 1.02; letter-spacing: -.02em; margin-bottom: 1rem; }
 .hero h1 em { font-style: normal; color: var(--orange2); }
 .hero-frase { font-size: .72rem; font-weight: 900; letter-spacing: .1em; color: var(--teal3); margin-bottom: 2rem; text-transform: uppercase; }
-.hero-btns { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 16rem; }
-@media(min-width:900px){ .hero { align-items: center; padding: 7rem 2rem 4rem; } .hero-btns { margin-top: 0; } }
+.hero-btns { display: flex; flex-direction: column; gap: .7rem; margin-top: 16rem; }
+@media(min-width:900px){ .hero { align-items: center; padding: 7rem 2rem 4rem; } .hero-btns { flex-direction: row; margin-top: 0; } }
 .btn-primary { display: inline-block; background: var(--teal); color: var(--white); font-size: .62rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: .9rem 1.8rem; text-decoration: none; }
 .btn-ghost { display: inline-block; border: 1px solid rgba(0,194,154,0.4); color: var(--teal2); font-size: .62rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: .9rem 1.8rem; text-decoration: none; }
 
@@ -545,11 +545,11 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
       <div class="hero-eyebrow">Agencia de Viajes · Argentina</div>
       <h1>El mundo<br>te está<br><em>esperando</em></h1>
       <p class="hero-frase">VIAJÁ CON QUIEN YA LO VIVIÓ</p>
-      <div class="hero-btns">
-        <a href="#testimonios" class="btn-primary">Ver experiencias</a>
-        <a href="#contacto" class="btn-ghost">Escribime</a>
+    <div class="hero-btns">
+        <a href="#testimonios" class="btn-primary" style="width:100%;text-align:center">Ver experiencias</a>
+        <a href="#contacto" class="btn-ghost" style="width:100%;text-align:center">Escribime</a>
       </div>
-      <a href="/mexico" style="display:block;margin-top:.8rem;background:rgba(255,153,0,0.12);border:1px solid rgba(255,153,0,0.4);color:var(--orange2);font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.9rem 1.8rem;text-decoration:none;text-align:center;max-width:340px">🗺️ ¿Ya tenés tu viaje a México? → Ver servicios</a>
+      <a href="/mexico" style="display:block;margin-top:.8rem;background:rgba(255,153,0,0.12);border:1px solid rgba(255,153,0,0.4);color:var(--orange2);font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.9rem 1.8rem;text-decoration:none;text-align:center;width:100%;box-sizing:border-box">🗺️ ¿Ya tenés tu viaje a México? → Ver servicios</a>
     </div>
   </div>
 </section>
