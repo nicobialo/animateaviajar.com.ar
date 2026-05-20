@@ -77,7 +77,12 @@ section { padding: 4rem 1.4rem; }
 .destinos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin: 1.2rem 0 1.6rem; }
 .destino-item { background: rgba(0,194,154,0.08); border: 1px solid rgba(0,194,154,0.15); border-radius: 6px; padding: .6rem .8rem; font-size: .66rem; font-weight: 600; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: .4rem; }
 
-/* TOURS GRID */
+/* TABS */
+.tabs-bar { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center; margin: 1.5rem 0; }
+.tab-btn { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.6); font-family: 'Montserrat', sans-serif; font-size: .58rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .5rem 1rem; border-radius: 20px; cursor: pointer; transition: all .2s; white-space: nowrap; }
+.tab-btn:hover { border-color: rgba(0,194,154,0.4); color: var(--teal2); }
+.tab-btn.active { background: var(--teal); border-color: var(--teal); color: var(--white); }
+.tour-card.hidden { display: none; }
 .tours-section { background: var(--dark2); }
 .tours-header { text-align: center; margin-bottom: 2.5rem; }
 .tours-header .teal-line { margin: 1rem auto; }
@@ -971,7 +976,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
   <div class="hero-inner">
     <div class="hero-eyebrow">Servicios en el Caribe Mexicano</div>
     <h1>¿Ya tenés tu viaje<br>a México?<br><em>Nosotros te<br>resolvemos todo.</em></h1>
-    <p class="hero-sub">Coco Bongo sin sobreprecio. Traslados privados. Tours y excursiones. Grupo Xcaret. Y si querés conocer Ciudad de México, viví 2 años ahí y te asesoro como nadie.</p>
+    <p class="hero-sub">Coco Bongo sin sobreprecio. Traslados privados. Tours/excursiones. Grupo Xcaret. ¿Querés conocer Ciudad de México? Viví dos años ahí — te asesoro como un local.</p>
     <div class="hero-btns">
       <a href="https://api.whatsapp.com/message/CXGNRCZE2JHSM1?autoload=1&app_absent=0" class="btn-wa">💬 Consultame por WhatsApp</a>
       <a href="#tours" class="btn-outline">Ver todos los tours</a>
@@ -989,41 +994,12 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
 
 <!-- ANCHOR NAV -->
 <div class="anchor-nav">
-  <a href="#coco-bongo">🎭 Coco Bongo</a>
   <a href="#traslados">🚐 Traslados</a>
-  <a href="#tours">🗺️ Tours Riviera Maya</a>
-  <a href="#xcaret">🌿 Grupo Xcaret</a>
-  <a href="#noche">🌙 Vida Nocturna</a>
   <a href="#cdmx">🏙️ Ciudad de México</a>
+  <a href="#noche">🌙 Vida Nocturna</a>
+  <a href="#xcaret">🌿 Grupo Xcaret</a>
+  <a href="#tours">🗺️ Tours Riviera Maya</a>
 </div>
-
-<!-- COCO BONGO -->
-<section class="coco-section" id="coco-bongo">
-  <div class="coco-inner section-inner">
-    <div>
-      <div class="coco-badge">⭐ Vendedor oficial</div>
-      <div class="s-eyebrow">Sin sobreprecio</div>
-      <h2 class="s-title">Coco <em>Bongo</em></h2>
-      <div class="teal-line"></div>
-      <p class="s-desc">Coco Bongo es el show-discoteca más famoso del Caribe Mexicano. Acróbatas, tributos a artistas, confeti, serpentinas, música en vivo y una energía que no encontrás en ningún otro lado.</p>
-      <p class="s-desc" style="margin-top:-.8rem">Como vendedor oficial tengo acceso directo a las entradas. Dos sedes disponibles: Cancún y Playa del Carmen.</p>
-      <div class="coco-features">
-        <div class="coco-feat"><span class="coco-feat-icon">🎭</span> Shows acrobáticos y tributos a artistas</div>
-        <div class="coco-feat"><span class="coco-feat-icon">🎵</span> Música en vivo toda la noche</div>
-        <div class="coco-feat"><span class="coco-feat-icon">🍹</span> Barra de alcohol incluida</div>
-        <div class="coco-feat"><span class="coco-feat-icon">📍</span> Cancún y Playa del Carmen</div>
-      </div>
-      <a href="https://api.whatsapp.com/message/CXGNRCZE2JHSM1?autoload=1&app_absent=0" class="btn-wa">💬 Consultar precio y disponibilidad</a>
-    </div>
-    <div>
-      <!-- PLACEHOLDER: subí la foto como images/coco-bongo.jpg -->
-      <div class="coco-img-placeholder">
-        <div style="font-size:2.5rem">🎭</div>
-        <div style="font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,194,154,0.4)">coco-bongo.jpg</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- TRASLADOS -->
 <section class="traslados-section" id="traslados">
@@ -1053,65 +1029,59 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
   </div>
 </section>
 
-<!-- TOURS RIVIERA MAYA -->
-<section class="tours-section" id="tours">
-  <div class="section-inner">
-    <div class="tours-header">
-      <div class="s-eyebrow">Caribbean Connection</div>
-      <h2 class="s-title">Tours <span>Riviera Maya</span></h2>
-      <div class="teal-line"></div>
-      <p class="s-desc" style="margin:0 auto;text-align:center">25 tours disponibles. Todos con transporte redondo incluido. Hacé clic en cualquier tour para ver los detalles — precios a consultar por WhatsApp.</p>
-    </div>
-    <div class="tours-grid">
-      <div class="tour-card" onclick="abrirModal('tulum-dos-ojos')"><div class="tour-emoji">🏛️</div><div class="tour-nombre">Tulum + Cenote Dos Ojos</div><div class="tour-salidas">Mar · Jue · Sáb</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('bacalar-eco')"><div class="tour-emoji">🏞️</div><div class="tour-nombre">Bacalar Económico</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('chichen-lujo')"><div class="tour-emoji">🏛️</div><div class="tour-nombre">Chichén Itzá de Lujo + Cenotes Ik-Kil y Hubiku</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('cenotes-yucatan')"><div class="tour-emoji">🌊</div><div class="tour-nombre">Tour Cenotes Yucatán</div><div class="tour-salidas">Domingos</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('coba-arrecifes')"><div class="tour-emoji">🐢</div><div class="tour-nombre">Cobá + Arrecifes</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('coba-discovery')"><div class="tour-emoji">🌿</div><div class="tour-nombre">Cobá Discovery</div><div class="tour-salidas">Todos los días · tarde</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('bacalar-marmol')"><div class="tour-emoji">🏖️</div><div class="tour-nombre">Bacalar Club de Playa Mar & Mol</div><div class="tour-salidas">Jue a Mar</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('tulum-casa-tortuga')"><div class="tour-emoji">🐢</div><div class="tour-nombre">Tulum + Casa Tortuga</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('4x1')"><div class="tour-emoji">🏛️</div><div class="tour-nombre">4x1 Tulum + Cobá Deluxe</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('atvs')"><div class="tour-emoji">🏍️</div><div class="tour-nombre">ATVs + Caverna</div><div class="tour-salidas">Todos los días · 9am y 1pm</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('3cenotes')"><div class="tour-emoji">🌊</div><div class="tour-nombre">3 Cenotes</div><div class="tour-salidas">Todos los días · 9am y 1pm</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('coloradas')"><div class="tour-emoji">🦩</div><div class="tour-nombre">Coloradas y Río Lagarto</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('casa-tortuga')"><div class="tour-emoji">🐢</div><div class="tour-nombre">Casa Tortuga — Solo Cenotes</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('coba-adrenaline')"><div class="tour-emoji">⚡</div><div class="tour-nombre">Cobá Adrenaline</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('isla-mujeres')"><div class="tour-emoji">⛵</div><div class="tour-nombre">Isla Mujeres Todo Incluido</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('chichen-clasico')"><div class="tour-emoji">🏛️</div><div class="tour-nombre">Chichén Itzá Clásico</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('cozumel')"><div class="tour-emoji">🐠</div><div class="tour-nombre">Cozumel: Cielo y Cielito</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('bacalar-ponton')"><div class="tour-emoji">⛵</div><div class="tour-nombre">Bacalar Plus + Pontón Paseo en Lancha</div><div class="tour-salidas">Jue a Mar</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('aventura')"><div class="tour-emoji">🌊</div><div class="tour-nombre">Tour de Aventura</div><div class="tour-salidas">Lun · Mié · Vie · Dom</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('sian-kaan')"><div class="tour-emoji">🐬</div><div class="tour-nombre">Sian Ka'an — Lancha y Van</div><div class="tour-salidas">Mié y Sáb</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('akumal')"><div class="tour-emoji">🐢</div><div class="tour-nombre">Tulum + Akumal — Nado con Tortugas</div><div class="tour-salidas">Mar · Jue · Sáb</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('holbox-eco')"><div class="tour-emoji">🌴</div><div class="tour-nombre">Holbox Económico</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('holbox-mosquito')"><div class="tour-emoji">🏖️</div><div class="tour-nombre">Holbox Ferry + Punta Mosquito</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('holbox-plus')"><div class="tour-emoji">🌊</div><div class="tour-nombre">Holbox Plus + Cenote</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="tour-card" onclick="abrirModal('ekbalam')"><div class="tour-emoji">🏛️</div><div class="tour-nombre">Ek-Balam y Cenote Hubiku</div><div class="tour-salidas">Domingos</div><button class="btn-tour-ver">Ver detalles</button></div>
-    </div>
-  </div>
-</section>
-
-<!-- GRUPO XCARET -->
-<section class="xcaret-section" id="xcaret">
-  <div class="section-inner">
-    <div class="xcaret-header">
-      <div class="xcaret-badge">🌿 Revendedor autorizado</div>
-      <div class="s-eyebrow" style="text-align:center;color:#00E5B5">Los mejores parques de la Riviera Maya</div>
-      <h2 class="s-title" style="text-align:center">Grupo <span>Xcaret</span></h2>
+<!-- CIUDAD DE MEXICO -->
+<section class="cdmx-section" id="cdmx">
+  <div class="cdmx-inner">
+    <div style="text-align:center;margin-bottom:2rem">
+      <div class="s-eyebrow">Más allá del Caribe</div>
+      <h2 class="s-title">Ciudad de <em>México</em></h2>
       <div class="teal-line" style="margin:1rem auto"></div>
+      <p class="s-desc" style="margin:0 auto;text-align:center">Viví 2 años en CDMX. Conozco la ciudad como pocos turistas la llegan a conocer. Si querés combinar tu viaje al Caribe con algunos días en la capital, te asesoro en detalle.</p>
     </div>
-    <div class="xcaret-discount-box">
-      <p>⭐ <strong>Descuento por combinación:</strong> si contratás 2 o más productos del Grupo Xcaret en simultáneo, accedés a precios combinados con descuento. Consultame cuáles te interesan y te armo la mejor combinación.</p>
-    </div>
-    <div class="xcaret-grid">
-      <div class="xcaret-card" onclick="abrirModal('xcaret')"><div class="tour-emoji">🦜</div><div class="tour-nombre">Parque Xcaret Plus</div><div class="tour-salidas" style="margin-bottom:.3rem">Todos los días · 50+ atracciones</div><div style="font-size:.62rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">Comida + show nocturno incluidos</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="xcaret-card" onclick="abrirModal('xelha')"><div class="tour-emoji">🐟</div><div class="tour-nombre">Xel-Há Hidden Wonder</div><div class="tour-salidas" style="margin-bottom:.3rem">Todos los días · Snorkel ilimitado</div><div style="font-size:.62rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">All-Inclusive o Light</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="xcaret-card" onclick="abrirModal('xichen')"><div class="tour-emoji">🏛️</div><div class="tour-nombre">Xichén — Chichén Itzá Premium</div><div class="tour-salidas" style="margin-bottom:.3rem">Todos los días · Clásico o Deluxe</div><div style="font-size:.62rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">Bus privado con AC y baño</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="xcaret-card" onclick="abrirModal('xenses')"><div class="tour-emoji">🎭</div><div class="tour-nombre">Xenses</div><div class="tour-salidas" style="margin-bottom:.3rem">Todos los días · Experiencias sensoriales</div><div style="font-size:.62rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">Donde nada es lo que parece</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="xcaret-card" onclick="abrirModal('xenotes')"><div class="tour-emoji">🌀</div><div class="tour-nombre">Xenotes</div><div class="tour-salidas" style="margin-bottom:.3rem">Grupos pequeños · Tour premium</div><div style="font-size:.62rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">4 tipos de cenotes en un día</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="xcaret-card" onclick="abrirModal('xoximilco')"><div class="tour-emoji">🎉</div><div class="tour-nombre">Xoximilco</div><div class="tour-salidas" style="margin-bottom:.3rem">Noches · Fiesta mexicana en trajineras</div><div style="font-size:.62rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">Cena + barra libre incluidos</div><button class="btn-tour-ver">Ver detalles</button></div>
-      <div class="xcaret-card" onclick="abrirModal('xplor')"><div class="tour-emoji">⚡</div><div class="tour-nombre">Xplor — Aventura Extrema</div><div class="tour-salidas" style="margin-bottom:.3rem">Todos los días · Adrenalina pura</div><div style="font-size:.62rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">Tirolesas + ATVs + ríos subterráneos</div><button class="btn-tour-ver">Ver detalles</button></div>
+    <div class="cdmx-grid">
+      <!-- ASESORAMIENTO -->
+      <div class="cdmx-card">
+        <div class="globo-img-placeholder" style="background:linear-gradient(135deg,#0a1520,#0f2535)">
+          <div style="font-size:2.5rem">🏙️</div>
+          <div style="font-size:.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(0,194,154,0.4)">cdmx-angel.jpg</div>
+        </div>
+        <div class="cdmx-card-header">
+          <div style="font-size:.5rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal2);margin-bottom:.6rem">Asesoramiento personalizado</div>
+          <h3 style="font-size:1.1rem;font-weight:900;color:var(--white);margin-bottom:.5rem">Conocé CDMX como un local</h3>
+        </div>
+        <div class="cdmx-card-body">
+          <p style="font-size:.76rem;line-height:1.8;color:rgba(255,255,255,.65);margin-bottom:1rem">Barrios, restaurantes, transporte, seguridad y experiencias auténticas lejos del circuito turístico. Te armo el itinerario según cuántos días tenés y qué querés vivir.</p>
+          <ul class="list-check">
+            <li>Barrios según tu perfil: Condesa, Roma, Polanco, Coyoacán, Centro</li>
+            <li>Restaurantes reales — desde tacos de mercado hasta alta cocina</li>
+            <li>Transporte y movilidad: metro, Metrobús, Uber</li>
+            <li>Zonas a evitar y cómo moverte con tranquilidad</li>
+            <li>Experiencias culturales: Antropología, Frida Kahlo, Teotihuacán, Xochimilco</li>
+          </ul>
+          <a href="https://api.whatsapp.com/message/CXGNRCZE2JHSM1?autoload=1&app_absent=0" class="btn-wa" style="margin-top:1.2rem;font-size:.58rem;padding:.8rem 1.4rem">💬 Consultame sobre CDMX</a>
+        </div>
+      </div>
+      <!-- GLOBO -->
+      <div class="cdmx-card" style="border-color:rgba(255,153,0,0.25)">
+        <div class="globo-img-placeholder">
+          <div style="font-size:2.5rem">🎈</div>
+          <div style="font-size:.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,160,50,0.4)">globo.jpg</div>
+        </div>
+        <div class="cdmx-card-header">
+          <div class="globo-badge">⭐ Excursión exclusiva</div>
+          <h3 style="font-size:1.1rem;font-weight:900;color:var(--white);margin-bottom:.3rem">Globo Aerostático sobre Teotihuacán</h3>
+        </div>
+        <div class="cdmx-card-body">
+          <p style="font-size:.76rem;line-height:1.8;color:rgba(255,255,255,.65);margin-bottom:.8rem">Vuelo al amanecer sobre las Pirámides del Sol y de la Luna. La vista desde el globo es de las experiencias más impactantes que vas a vivir en México — y no existe foto que le haga justicia.</p>
+          <ul class="list-check">
+            <li>Vuelo al amanecer (45min a 1h)</li>
+            <li>Vista panorámica de las pirámides desde el aire</li>
+            <li>Certificado de vuelo como recuerdo</li>
+          </ul>
+          <div class="precio-consultar">💰 <strong>Precio a consultar</strong> — varía según fecha y temporada. Desde aprox. USD 200 por persona. Cupos muy limitados.</div>
+          <a href="https://api.whatsapp.com/message/CXGNRCZE2JHSM1?autoload=1&app_absent=0" class="btn-wa" style="font-size:.58rem;padding:.8rem 1.4rem;background:linear-gradient(135deg,#c55a00,#e8600a)">💬 Consultar disponibilidad</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1135,7 +1105,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
         <div class="noche-body">
           <div class="noche-tag" style="background:rgba(232,96,10,0.12);border:1px solid rgba(232,96,10,0.3);color:#FF9A00">⭐ Vendedor oficial</div>
           <div class="noche-title">Coco Bongo</div>
-          <p class="noche-desc">El show-discoteca más famoso del Caribe. Acróbatas, tributos a artistas, música electrónica y pop, confeti y una energía que no para hasta que vos pares. Dos sedes: Cancún y Playa del Carmen.</p>
+          <p class="noche-desc">El show-discoteca más famoso del Caribe. Acróbatas, tributos a artistas, música electrónica y pop, confeti y una energía que no para. Dos sedes: Cancún y Playa del Carmen.</p>
           <div class="noche-features">
             <div class="noche-feat">🎵 Música electrónica y pop en vivo</div>
             <div class="noche-feat">🎭 Shows acrobáticos y tributos</div>
@@ -1170,61 +1140,76 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
   </div>
 </section>
 
-<!-- CIUDAD DE MEXICO -->
-<section class="cdmx-section" id="cdmx">
-  <div class="cdmx-inner">
-    <div style="text-align:center;margin-bottom:2rem">
-      <div class="s-eyebrow">Más allá del Caribe</div>
-      <h2 class="s-title">Ciudad de <em>México</em></h2>
+<!-- GRUPO XCARET -->
+<section class="xcaret-section" id="xcaret">
+  <div class="section-inner">
+    <div class="xcaret-header">
+      <div class="xcaret-badge">🌿 Revendedor autorizado</div>
+      <div class="s-eyebrow" style="text-align:center;color:#00E5B5">Los mejores parques de la Riviera Maya</div>
+      <h2 class="s-title" style="text-align:center">Grupo <span>Xcaret</span></h2>
       <div class="teal-line" style="margin:1rem auto"></div>
-      <p class="s-desc" style="margin:0 auto;text-align:center">Viví 2 años en CDMX. Conozco la ciudad como pocos turistas la llegan a conocer. Si querés combinar tu viaje al Caribe con algunos días en la capital, te asesoro en detalle.</p>
     </div>
-    <div class="cdmx-grid">
-      <!-- ASESORAMIENTO -->
-      <div class="cdmx-card">
-        <!-- PLACEHOLDER: subí la foto como images/cdmx-angel.jpg -->
-        <div class="globo-img-placeholder" style="background:linear-gradient(135deg,#0a1520,#0f2535)">
-          <div style="font-size:2.5rem">🏙️</div>
-          <div style="font-size:.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(0,194,154,0.4)">cdmx-angel.jpg</div>
-        </div>
-        <div class="cdmx-card-header">
-          <div style="font-size:.5rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal2);margin-bottom:.6rem">Asesoramiento personalizado</div>
-          <h3 style="font-size:1.1rem;font-weight:900;color:var(--white);margin-bottom:.5rem">Conocé CDMX como un local</h3>
-        </div>
-        <div class="cdmx-card-body">
-          <p style="font-size:.76rem;line-height:1.8;color:rgba(255,255,255,.65);margin-bottom:1rem">Barrios, restaurantes, transporte, seguridad y experiencias auténticas lejos del circuito turístico. Te armo el itinerario según cuántos días tenés y qué querés vivir.</p>
-          <ul class="list-check">
-            <li>Barrios según tu perfil: Condesa, Roma, Polanco, Coyoacán, Centro</li>
-            <li>Restaurantes reales — desde tacos de mercado hasta alta cocina</li>
-            <li>Transporte y movilidad: metro, Metrobús, Uber</li>
-            <li>Zonas a evitar y cómo moverte con tranquilidad</li>
-            <li>Experiencias culturales: Antropología, Frida Kahlo, Teotihuacán, Xochimilco</li>
-          </ul>
-          <a href="https://api.whatsapp.com/message/CXGNRCZE2JHSM1?autoload=1&app_absent=0" class="btn-wa" style="margin-top:1.2rem;font-size:.58rem;padding:.8rem 1.4rem">💬 Consultame sobre CDMX</a>
-        </div>
-      </div>
-      <!-- GLOBO -->
-      <div class="cdmx-card" style="border-color:rgba(255,153,0,0.25)">
-        <!-- PLACEHOLDER: subí la foto como images/globo.jpg -->
-        <div class="globo-img-placeholder">
-          <div style="font-size:2.5rem">🎈</div>
-          <div style="font-size:.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,160,50,0.4)">globo.jpg</div>
-        </div>
-        <div class="cdmx-card-header">
-          <div class="globo-badge">⭐ Excursión exclusiva</div>
-          <h3 style="font-size:1.1rem;font-weight:900;color:var(--white);margin-bottom:.3rem">Globo Aerostático sobre Teotihuacán</h3>
-        </div>
-        <div class="cdmx-card-body">
-          <p style="font-size:.76rem;line-height:1.8;color:rgba(255,255,255,.65);margin-bottom:.8rem">Vuelo al amanecer sobre las Pirámides del Sol y de la Luna. La vista desde el globo es de las experiencias más impactantes que vas a vivir en México — y no existe foto que le haga justicia.</p>
-          <ul class="list-check">
-            <li>Vuelo al amanecer (45min a 1h)</li>
-            <li>Vista panorámica de las pirámides desde el aire</li>
-            <li>Certificado de vuelo como recuerdo</li>
-          </ul>
-          <div class="precio-consultar">💰 <strong>Precio a consultar</strong> — varía según fecha y temporada. Desde aprox. USD 200 por persona. Cupos muy limitados.</div>
-          <a href="https://api.whatsapp.com/message/CXGNRCZE2JHSM1?autoload=1&app_absent=0" class="btn-wa" style="font-size:.58rem;padding:.8rem 1.4rem;background:linear-gradient(135deg,#c55a00,#e8600a)">💬 Consultar disponibilidad</a>
-        </div>
-      </div>
+    <div class="xcaret-discount-box">
+      <p>⭐ <strong>Descuento por combinación:</strong> si contratás 2 o más productos del Grupo Xcaret en simultáneo, accedés a precios combinados con descuento. Consultame cuáles te interesan y te armo la mejor combinación.</p>
+    </div>
+    <div class="xcaret-grid">
+      <div class="xcaret-card" onclick="abrirModal('xcaret')"><div class="tour-emoji">🦜</div><div class="tour-nombre">Parque Xcaret Plus</div><div class="tour-salidas" style="margin-bottom:.3rem">Todos los días · 50+ atracciones</div><div style="font-size:.62rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">Comida + show nocturno incluidos</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="xcaret-card" onclick="abrirModal('xelha')"><div class="tour-emoji">🐟</div><div class="tour-nombre">Xel-Há Hidden Wonder</div><div class="tour-salidas" style="margin-bottom:.3rem">Todos los días · Snorkel ilimitado</div><div style="font-size:.62rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">All-Inclusive o Light</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="xcaret-card" onclick="abrirModal('xichen')"><div class="tour-emoji">🏛️</div><div class="tour-nombre">Xichén — Chichén Itzá Premium</div><div class="tour-salidas" style="margin-bottom:.3rem">Todos los días · Clásico o Deluxe</div><div style="font-size:.62rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">Bus privado con AC y baño</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="xcaret-card" onclick="abrirModal('xenses')"><div class="tour-emoji">🎭</div><div class="tour-nombre">Xenses</div><div class="tour-salidas" style="margin-bottom:.3rem">Todos los días · Experiencias sensoriales</div><div style="font-size:.62rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">Donde nada es lo que parece</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="xcaret-card" onclick="abrirModal('xenotes')"><div class="tour-emoji">🌀</div><div class="tour-nombre">Xenotes</div><div class="tour-salidas" style="margin-bottom:.3rem">Grupos pequeños · Tour premium</div><div style="font-size:.62rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">4 tipos de cenotes en un día</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="xcaret-card" onclick="abrirModal('xoximilco')"><div class="tour-emoji">🎉</div><div class="tour-nombre">Xoximilco</div><div class="tour-salidas" style="margin-bottom:.3rem">Noches · Fiesta mexicana en trajineras</div><div style="font-size:.62rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">Cena + barra libre incluidos</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="xcaret-card" onclick="abrirModal('xplor')"><div class="tour-emoji">⚡</div><div class="tour-nombre">Xplor — Aventura Extrema</div><div class="tour-salidas" style="margin-bottom:.3rem">Todos los días · Adrenalina pura</div><div style="font-size:.62rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">Tirolesas + ATVs + ríos subterráneos</div><button class="btn-tour-ver">Ver detalles</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOURS RIVIERA MAYA -->
+<section class="tours-section" id="tours">
+  <div class="section-inner">
+    <div class="tours-header">
+      <div class="s-eyebrow">Caribbean Connection</div>
+      <h2 class="s-title">Tours <span>Riviera Maya</span></h2>
+      <div class="teal-line"></div>
+      <p class="s-desc" style="margin:0 auto;text-align:center">25 tours con transporte redondo incluido. Elegí la categoría que más te interesa.</p>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs-bar">
+      <button class="tab-btn active" onclick="filtrarTours('todos')">🗺️ Todos</button>
+      <button class="tab-btn" onclick="filtrarTours('arqueologia')">🏛️ Arqueología</button>
+      <button class="tab-btn" onclick="filtrarTours('cenotes')">🌊 Cenotes</button>
+      <button class="tab-btn" onclick="filtrarTours('playa')">🏖️ Playa & Mar</button>
+      <button class="tab-btn" onclick="filtrarTours('naturaleza')">🌿 Naturaleza</button>
+      <button class="tab-btn" onclick="filtrarTours('holbox')">🌴 Holbox & Bacalar</button>
+    </div>
+
+    <div class="tours-grid">
+      <div class="tour-card" data-cat="arqueologia cenotes" onclick="abrirModal('tulum-dos-ojos')"><div class="tour-emoji">🏛️</div><div class="tour-nombre">Tulum + Cenote Dos Ojos</div><div class="tour-salidas">Mar · Jue · Sáb</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="holbox" onclick="abrirModal('bacalar-eco')"><div class="tour-emoji">🏞️</div><div class="tour-nombre">Bacalar Económico</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="arqueologia cenotes" onclick="abrirModal('chichen-lujo')"><div class="tour-emoji">🏛️</div><div class="tour-nombre">Chichén Itzá de Lujo + Cenotes Ik-Kil y Hubiku</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="cenotes" onclick="abrirModal('cenotes-yucatan')"><div class="tour-emoji">🌊</div><div class="tour-nombre">Tour Cenotes Yucatán</div><div class="tour-salidas">Domingos</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="arqueologia playa" onclick="abrirModal('coba-arrecifes')"><div class="tour-emoji">🐢</div><div class="tour-nombre">Cobá + Arrecifes</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="arqueologia" onclick="abrirModal('coba-discovery')"><div class="tour-emoji">🌿</div><div class="tour-nombre">Cobá Discovery</div><div class="tour-salidas">Todos los días · tarde</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="holbox" onclick="abrirModal('bacalar-marmol')"><div class="tour-emoji">🏖️</div><div class="tour-nombre">Bacalar Club de Playa Mar & Mol</div><div class="tour-salidas">Jue a Mar</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="arqueologia cenotes" onclick="abrirModal('tulum-casa-tortuga')"><div class="tour-emoji">🐢</div><div class="tour-nombre">Tulum + Casa Tortuga</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="arqueologia cenotes" onclick="abrirModal('4x1')"><div class="tour-emoji">🏛️</div><div class="tour-nombre">4x1 Tulum + Cobá Deluxe</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="naturaleza" onclick="abrirModal('atvs')"><div class="tour-emoji">🏍️</div><div class="tour-nombre">ATVs + Caverna</div><div class="tour-salidas">Todos los días · 9am y 1pm</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="cenotes" onclick="abrirModal('3cenotes')"><div class="tour-emoji">🌊</div><div class="tour-nombre">3 Cenotes</div><div class="tour-salidas">Todos los días · 9am y 1pm</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="naturaleza" onclick="abrirModal('coloradas')"><div class="tour-emoji">🦩</div><div class="tour-nombre">Coloradas y Río Lagarto</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="cenotes" onclick="abrirModal('casa-tortuga')"><div class="tour-emoji">🐢</div><div class="tour-nombre">Casa Tortuga — Solo Cenotes</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="arqueologia naturaleza" onclick="abrirModal('coba-adrenaline')"><div class="tour-emoji">⚡</div><div class="tour-nombre">Cobá Adrenaline</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="playa" onclick="abrirModal('isla-mujeres')"><div class="tour-emoji">⛵</div><div class="tour-nombre">Isla Mujeres Todo Incluido</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="arqueologia" onclick="abrirModal('chichen-clasico')"><div class="tour-emoji">🏛️</div><div class="tour-nombre">Chichén Itzá Clásico</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="playa" onclick="abrirModal('cozumel')"><div class="tour-emoji">🐠</div><div class="tour-nombre">Cozumel: Cielo y Cielito</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="holbox" onclick="abrirModal('bacalar-ponton')"><div class="tour-emoji">⛵</div><div class="tour-nombre">Bacalar Plus + Pontón Paseo en Lancha</div><div class="tour-salidas">Jue a Mar</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="naturaleza cenotes" onclick="abrirModal('aventura')"><div class="tour-emoji">🌊</div><div class="tour-nombre">Tour de Aventura</div><div class="tour-salidas">Lun · Mié · Vie · Dom</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="naturaleza playa" onclick="abrirModal('sian-kaan')"><div class="tour-emoji">🐬</div><div class="tour-nombre">Sian Ka'an — Lancha y Van</div><div class="tour-salidas">Mié y Sáb</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="arqueologia cenotes playa" onclick="abrirModal('akumal')"><div class="tour-emoji">🐢</div><div class="tour-nombre">Tulum + Akumal — Nado con Tortugas</div><div class="tour-salidas">Mar · Jue · Sáb</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="holbox" onclick="abrirModal('holbox-eco')"><div class="tour-emoji">🌴</div><div class="tour-nombre">Holbox Económico</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="holbox" onclick="abrirModal('holbox-mosquito')"><div class="tour-emoji">🏖️</div><div class="tour-nombre">Holbox Ferry + Punta Mosquito</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="holbox cenotes" onclick="abrirModal('holbox-plus')"><div class="tour-emoji">🌊</div><div class="tour-nombre">Holbox Plus + Cenote</div><div class="tour-salidas">Todos los días</div><button class="btn-tour-ver">Ver detalles</button></div>
+      <div class="tour-card" data-cat="arqueologia cenotes" onclick="abrirModal('ekbalam')"><div class="tour-emoji">🏛️</div><div class="tour-nombre">Ek-Balam y Cenote Hubiku</div><div class="tour-salidas">Domingos</div><button class="btn-tour-ver">Ver detalles</button></div>
     </div>
   </div>
 </section>
@@ -1254,6 +1239,18 @@ footer { background: var(--dark); border-top: 1px solid rgba(0,194,154,0.1); pad
 </footer>
 
 <script>
+function filtrarTours(cat) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.tour-card').forEach(card => {
+    if (cat === 'todos' || card.dataset.cat.includes(cat)) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
 function abrirModal(id) {
   var m = document.getElementById('m-' + id);
   if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; history.pushState({ modal: id }, ''); }
