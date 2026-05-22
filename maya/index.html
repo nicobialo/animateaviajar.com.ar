@@ -110,40 +110,7 @@
     pointer-events:none;
   }
 
-  /* Overlay de play personalizado */
-  .vsl-overlay {
-    position:absolute;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    background:rgba(0,0,0,0.45);
-    cursor:pointer;
-    transition:background 0.3s;
-    z-index:10;
-  }
-  .vsl-overlay:hover { background:rgba(0,0,0,0.3); }
-  .vsl-overlay.hidden { display:none; }
 
-  .play-circle {
-    width:80px;height:80px;
-    border-radius:50%;
-    background:var(--verde);
-    display:flex;align-items:center;justify-content:center;
-    font-size:32px;
-    box-shadow:0 8px 32px rgba(45,106,79,0.6);
-    margin-bottom:16px;
-    transition:transform 0.2s;
-  }
-  .vsl-overlay:hover .play-circle { transform:scale(1.08); }
-
-  .vsl-overlay p {
-    font-size:13px;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-    color:rgba(245,240,232,0.8);
-  }
 
   /* CTA que aparece después de X segundos */
   .vsl-cta {
@@ -163,6 +130,24 @@
   .vsl-cta.visible { display:block; }
 
   /* ── FIN VSL ── */
+
+  .btn-ver-video {
+    display:inline-block;
+    background:transparent;
+    color:var(--blanco);
+    font-family:'DM Sans',sans-serif;
+    font-size:0.95rem;
+    font-weight:400;
+    font-style:italic;
+    border:1px solid rgba(245,240,232,0.25);
+    border-radius:50px;
+    padding:12px 28px;
+    margin-bottom:32px;
+    cursor:pointer;
+    letter-spacing:0.3px;
+    transition:border-color 0.2s, color 0.2s;
+  }
+  .btn-ver-video:hover { border-color:var(--verde-c); color:var(--verde-c); }
 
   .btn-wa {
     display:inline-flex;align-items:center;gap:12px;
@@ -252,23 +237,22 @@
   <p class="ritmo">11 noches, a tu ritmo</p>
   <p class="destinos">Playa del Carmen &nbsp;·&nbsp; Isla Mujeres &nbsp;·&nbsp; Cancún</p>
 
+  <button class="btn-ver-video" onclick="document.getElementById('vsl-wrap').scrollIntoView({behavior:'smooth', block:'center'})">
+    Antes de escribirme, mirá el video — dura solo 3 minutos 👇🏻
+  </button>
+
   <!-- VSL PLAYER -->
   <div class="vsl-wrap" id="vsl-wrap">
 
     <!-- Recorte de barras negras -->
     <div class="yt-clipper">
       <iframe id="yt-player"
-        src="https://www.youtube.com/embed/XPIA3PKo3ws?enablejsapi=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&fs=0&playsinline=1"
+        src="https://www.youtube.com/embed/XPIA3PKo3ws?enablejsapi=1&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1"
         allow="autoplay; encrypted-media"
         allowfullscreen>
       </iframe>
     </div>
 
-    <!-- Play personalizado -->
-    <div class="vsl-overlay" id="vsl-overlay" onclick="iniciarVideo()">
-      <div class="play-circle">▶</div>
-      <p>Ver el video antes de escribirme</p>
-    </div>
 
     <!-- CTA que aparece a los 90 segundos -->
     <div class="vsl-cta" id="vsl-cta">
@@ -356,26 +340,14 @@
 
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('yt-player', {
-      events: {
-        'onStateChange': onPlayerStateChange
-      }
+      events: { 'onStateChange': onPlayerStateChange }
     });
   }
 
   function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING && !videoStarted) {
       videoStarted = true;
-      // CTA aparece a los 90 segundos
       ctaTimer = setTimeout(mostrarCTA, 90000);
-    }
-  }
-
-  function iniciarVideo() {
-    document.getElementById('vsl-overlay').classList.add('hidden');
-    // Habilitar pointer events en el iframe para que el usuario pueda pausar
-    document.querySelector('.yt-clipper iframe').style.pointerEvents = 'auto';
-    if (player && player.playVideo) {
-      player.playVideo();
     }
   }
 
